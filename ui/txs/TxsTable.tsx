@@ -48,12 +48,12 @@ const TxsTable = ({
       <Table variant="simple" minWidth="950px" size="xs">
         <TheadSticky top={ top }>
           <Tr>
-            <Th width="54px"></Th>
+            { /* <Th width="54px"></Th> */ }
             <Th width="180px">Txn hash</Th>
             <Th width="160px">Type</Th>
             <Th width="20%">Method</Th>
             { showBlockInfo && <Th width="18%">Block</Th> }
-            <Th width="224px">From/To</Th>
+            { /*<Th width="224px">From/To</Th> */ }
             { !config.UI.views.tx.hiddenFields?.value && (
               <Th width="20%" isNumeric>
                 <Link onClick={ sort('value') } display="flex" justifyContent="end">

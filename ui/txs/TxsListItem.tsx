@@ -12,14 +12,14 @@ import getValueWithUnit from 'lib/getValueWithUnit';
 import useTimeAgoIncrement from 'lib/hooks/useTimeAgoIncrement';
 import { space } from 'lib/html-entities';
 import { currencyUnits } from 'lib/units';
-import AddressFromTo from 'ui/shared/address/AddressFromTo';
+//import AddressFromTo from 'ui/shared/address/AddressFromTo';
 import BlockEntity from 'ui/shared/entities/block/BlockEntity';
 import TxEntity from 'ui/shared/entities/tx/TxEntity';
 import ListItemMobile from 'ui/shared/ListItemMobile/ListItemMobile';
 import TxStatus from 'ui/shared/statusTag/TxStatus';
 import TxFeeStability from 'ui/shared/tx/TxFeeStability';
 import TxWatchListTags from 'ui/shared/tx/TxWatchListTags';
-import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
+//import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
 import TxType from 'ui/txs/TxType';
 
 import TxTranslationType from './TxTranslationType';
@@ -32,8 +32,8 @@ type Props = {
   isLoading?: boolean;
 }
 
-const TxsListItem = ({ tx, isLoading, showBlockInfo, currentAddress, enableTimeIncrement }: Props) => {
-  const dataTo = tx.to ? tx.to : tx.created_contract;
+const TxsListItem = ({ tx, isLoading, showBlockInfo/*, currentAddress*/, enableTimeIncrement }: Props) => {
+  //const dataTo = tx.to ? tx.to : tx.created_contract;
 
   const timeAgo = useTimeAgoIncrement(tx.timestamp, enableTimeIncrement);
 
@@ -48,7 +48,7 @@ const TxsListItem = ({ tx, isLoading, showBlockInfo, currentAddress, enableTimeI
           <TxStatus status={ tx.status } errorText={ tx.status === 'error' ? tx.result : undefined } isLoading={ isLoading }/>
           <TxWatchListTags tx={ tx } isLoading={ isLoading }/>
         </HStack>
-        <TxAdditionalInfo tx={ tx } isMobile isLoading={ isLoading }/>
+        { /*<TxAdditionalInfo tx={ tx } isMobile isLoading={ isLoading }/>*/ }
       </Flex>
       <Flex justifyContent="space-between" lineHeight="24px" mt={ 3 } alignItems="center">
         <TxEntity
@@ -88,6 +88,7 @@ const TxsListItem = ({ tx, isLoading, showBlockInfo, currentAddress, enableTimeI
           />
         </Flex>
       ) }
+      { /*
       <AddressFromTo
         from={ tx.from }
         to={ dataTo }
@@ -96,6 +97,7 @@ const TxsListItem = ({ tx, isLoading, showBlockInfo, currentAddress, enableTimeI
         mt={ 6 }
         fontWeight="500"
       />
+    */ }
       { !config.UI.views.tx.hiddenFields?.value && (
         <Flex mt={ 2 } columnGap={ 2 }>
           <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Value</Skeleton>

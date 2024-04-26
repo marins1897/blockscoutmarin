@@ -9,11 +9,11 @@ import React from 'react';
 
 import type { Block } from 'types/api/block';
 
-import config from 'configs/app';
-import getBlockTotalReward from 'lib/block/getBlockTotalReward';
-import getNetworkValidatorTitle from 'lib/networks/getNetworkValidatorTitle';
+//import config from 'configs/app';
+//import getBlockTotalReward from 'lib/block/getBlockTotalReward';
+//import getNetworkValidatorTitle from 'lib/networks/getNetworkValidatorTitle';
 import BlockTimestamp from 'ui/blocks/BlockTimestamp';
-import AddressEntity from 'ui/shared/entities/address/AddressEntity';
+//import AddressEntity from 'ui/shared/entities/address/AddressEntity';
 import BlockEntity from 'ui/shared/entities/block/BlockEntity';
 
 type Props = {
@@ -22,7 +22,7 @@ type Props = {
 }
 
 const LatestBlocksItem = ({ block, isLoading }: Props) => {
-  const totalReward = getBlockTotalReward(block);
+  //const totalReward = getBlockTotalReward(block);
   return (
     <Box
       as={ motion.div }
@@ -58,7 +58,7 @@ const LatestBlocksItem = ({ block, isLoading }: Props) => {
       <Grid gridGap={ 2 } templateColumns="auto minmax(0, 1fr)" fontSize="sm">
         <Skeleton isLoaded={ !isLoading }>Txn</Skeleton>
         <Skeleton isLoaded={ !isLoading } color="text_secondary"><span>{ block.tx_count }</span></Skeleton>
-
+        { /*
         { !config.features.rollup.isEnabled && !config.UI.views.block.hiddenFields?.total_reward && (
           <>
             <Skeleton isLoaded={ !isLoading }>Reward</Skeleton>
@@ -78,6 +78,7 @@ const LatestBlocksItem = ({ block, isLoading }: Props) => {
             />
           </>
         ) }
+      */ }
       </Grid>
     </Box>
   );

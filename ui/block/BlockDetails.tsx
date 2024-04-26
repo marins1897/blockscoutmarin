@@ -11,7 +11,7 @@ import { route } from 'nextjs-routes';
 
 import config from 'configs/app';
 import getBlockReward from 'lib/block/getBlockReward';
-import { GWEI, WEI, WEI_IN_GWEI, ZERO } from 'lib/consts';
+import { /*GWEI,*/ WEI, /*WEI_IN_GWEI,*/ ZERO } from 'lib/consts';
 import { space } from 'lib/html-entities';
 import getNetworkValidatorTitle from 'lib/networks/getNetworkValidatorTitle';
 import getQueryParamString from 'lib/router/getQueryParamString';
@@ -290,7 +290,6 @@ const BlockDetails = ({ query }: Props) => {
       }
 
       <DetailsInfoItemDivider/>
-
       <DetailsInfoItem
         title="Gas used"
         hint="The total gas amount used in the block and its percentage of gas filled in the block"
@@ -321,6 +320,7 @@ const BlockDetails = ({ query }: Props) => {
           { BigNumber(data.gas_limit).toFormat() }
         </Skeleton>
       </DetailsInfoItem>
+      { /*
       { data.minimum_gas_price && (
         <DetailsInfoItem
           title="Minimum gas price"
@@ -350,6 +350,7 @@ const BlockDetails = ({ query }: Props) => {
           ) }
         </DetailsInfoItem>
       ) }
+      */ }
       { !config.UI.views.block.hiddenFields?.burnt_fees && !burntFees.isEqualTo(ZERO) && (
         <DetailsInfoItem
           title="Burnt fees"

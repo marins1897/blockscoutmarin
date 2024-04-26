@@ -120,6 +120,7 @@ const Stats = () => {
           url={ route({ pathname: '/txs' }) }
           isLoading={ isLoading }
         />
+        { /*
         <StatsItem
           icon="wallet"
           title="Wallet addresses"
@@ -127,6 +128,7 @@ const Stats = () => {
           _last={ isOdd ? lastItemTouchStyle : undefined }
           isLoading={ isLoading }
         />
+      */ }
         { hasGasTracker && data.gas_prices && (
           <StatsItem
             icon="gas"

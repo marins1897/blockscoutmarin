@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { Flex, Grid, Skeleton, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 
@@ -5,7 +6,7 @@ import type { DecodedInput } from 'types/api/decodedInput';
 import type { ArrayElement } from 'types/utils';
 
 import CopyToClipboard from 'ui/shared/CopyToClipboard';
-import AddressEntity from 'ui/shared/entities/address/AddressEntity';
+//import AddressEntity from 'ui/shared/entities/address/AddressEntity';
 import TruncatedValue from 'ui/shared/TruncatedValue';
 
 interface Props {
@@ -28,15 +29,19 @@ const HeaderItem = ({ children, isLoading }: { children: React.ReactNode; isLoad
   );
 };
 
-const Row = ({ name, type, indexed, value, isLoading }: ArrayElement<DecodedInput['parameters']> & { isLoading?: boolean }) => {
+const Row = ({ name, type, /*indexed,*/ value, isLoading }: ArrayElement<DecodedInput['parameters']> & { isLoading?: boolean }) => {
   const content = (() => {
     if (type === 'address' && typeof value === 'string') {
+      // eslint-disable-next-line no-console
+      console.log(value);
+      { /*
       return (
         <AddressEntity
           address={{ hash: value, name: '', implementation_name: null, is_contract: false, is_verified: false }}
           isLoading={ isLoading }
         />
       );
+    */ }
     }
 
     if (typeof value === 'object') {
@@ -48,22 +53,17 @@ const Row = ({ name, type, indexed, value, isLoading }: ArrayElement<DecodedInpu
         </Flex>
       );
     }
-
-    return (
-      <Flex alignItems="flex-start" justifyContent="space-between" whiteSpace="normal" wordBreak="break-all">
-        <TruncatedValue value={ value } isLoading={ isLoading }/>
-        <CopyToClipboard text={ value } isLoading={ isLoading }/>
-      </Flex>
-    );
   })();
 
   return (
     <>
       <TruncatedValue value={ name } isLoading={ isLoading }/>
       <TruncatedValue value={ type } isLoading={ isLoading }/>
+      { /*
       { indexed !== undefined && (
         <Skeleton isLoaded={ !isLoading } display="inline-block">{ indexed ? 'true' : 'false' }</Skeleton>
       ) }
+    */ }
       <Skeleton isLoaded={ !isLoading } display="inline-block">{ content }</Skeleton>
     </>
   );
@@ -96,12 +96,15 @@ const LogDecodedInputDataTable = ({ data, isLoading }: Props) => {
     >
       <HeaderItem isLoading={ isLoading }>Name</HeaderItem>
       <HeaderItem isLoading={ isLoading }>Type</HeaderItem>
-      { hasIndexed && <HeaderItem isLoading={ isLoading }>Inde<wbr/>xed?</HeaderItem> }
+      { /*{ hasIndexed && <HeaderItem isLoading={ isLoading }>Inde<wbr/>xed?</HeaderItem> }*/ }
       <HeaderItem isLoading={ isLoading }>Data</HeaderItem>
-      { data.map((item) => {
-
-        return <Row key={ item.name } { ...item } isLoading={ isLoading }/>;
-      }) }
+      <HeaderItem isLoading={ isLoading } children={ undefined }></HeaderItem>
+      { data
+        .filter(item => item.type !== 'address' && item.name !== 'address') // Filters out 'address' type or name
+        .map((item) => (
+          <Row key={ item.name } { ...item } isLoading={ isLoading }/>
+        ))
+      }
     </Grid>
   );
 };

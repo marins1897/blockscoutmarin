@@ -28,7 +28,7 @@ export default function useNavItems(): ReturnType {
   return React.useMemo(() => {
     let blockchainNavItems: Array<NavItem> | Array<Array<NavItem>> = [];
 
-    const topAccounts: NavItem | null = !config.UI.views.address.hiddenViews?.top_accounts ? {
+    const topAccounts: NavItem | null = config.UI.views.address.hiddenViews?.top_accounts ? {
       text: 'Top accounts',
       nextRoute: { pathname: '/accounts' as const },
       icon: 'top-accounts',
@@ -53,6 +53,7 @@ export default function useNavItems(): ReturnType {
       isActive: pathname === '/ops' || pathname === '/op/[hash]',
     } : null;
 
+    /*
     const verifiedContracts: NavItem | null =
      {
        text: 'Verified contracts',
@@ -60,6 +61,7 @@ export default function useNavItems(): ReturnType {
        icon: 'verified',
        isActive: pathname === '/verified-contracts',
      };
+     */
     const ensLookup = config.features.nameService.isEnabled ? {
       text: 'Name services lookup',
       nextRoute: { pathname: '/name-domains' as const },
@@ -91,7 +93,7 @@ export default function useNavItems(): ReturnType {
         [
           topAccounts,
           validators,
-          verifiedContracts,
+          //verifiedContracts,
           ensLookup,
         ].filter(Boolean),
       ];
@@ -115,7 +117,7 @@ export default function useNavItems(): ReturnType {
           userOps,
           topAccounts,
           validators,
-          verifiedContracts,
+          //verifiedContracts,
           ensLookup,
         ].filter(Boolean),
       ];
@@ -132,7 +134,7 @@ export default function useNavItems(): ReturnType {
           blocks,
           userOps,
           topAccounts,
-          verifiedContracts,
+          //verifiedContracts,
           ensLookup,
         ].filter(Boolean),
       ];
@@ -152,7 +154,7 @@ export default function useNavItems(): ReturnType {
         [
           topAccounts,
           validators,
-          verifiedContracts,
+          //verifiedContracts,
           ensLookup,
         ].filter(Boolean),
       ];
@@ -163,7 +165,7 @@ export default function useNavItems(): ReturnType {
         blocks,
         topAccounts,
         validators,
-        verifiedContracts,
+        //verifiedContracts,
         ensLookup,
         config.features.beaconChain.isEnabled && {
           text: 'Withdrawals',
@@ -187,12 +189,12 @@ export default function useNavItems(): ReturnType {
         icon: 'graphQL',
         isActive: pathname === '/graphiql',
       } : null,
-      !config.UI.sidebar.hiddenLinks?.rpc_api && {
+      config.UI.sidebar.hiddenLinks?.rpc_api && {
         text: 'RPC API',
         icon: 'RPC',
         url: 'https://docs.blockscout.com/for-users/api/rpc-endpoints',
       },
-      !config.UI.sidebar.hiddenLinks?.eth_rpc_api && {
+      config.UI.sidebar.hiddenLinks?.eth_rpc_api && {
         text: 'Eth RPC API',
         icon: 'RPC',
         url: ' https://docs.blockscout.com/for-users/api/eth-rpc',
@@ -206,12 +208,15 @@ export default function useNavItems(): ReturnType {
         isActive: blockchainNavItems.flat().some(item => isInternalItem(item) && item.isActive),
         subItems: blockchainNavItems,
       },
+
+      /*
       {
         text: 'Tokens',
         nextRoute: { pathname: '/tokens' as const },
         icon: 'token',
         isActive: pathname.startsWith('/token'),
       },
+      */
       config.features.marketplace.isEnabled ? {
         text: 'DApps',
         nextRoute: { pathname: '/apps' as const },
@@ -230,6 +235,8 @@ export default function useNavItems(): ReturnType {
         isActive: apiNavItems.some(item => isInternalItem(item) && item.isActive),
         subItems: apiNavItems,
       },
+
+      /*
       {
         text: 'Other',
         icon: 'gear',
@@ -247,6 +254,7 @@ export default function useNavItems(): ReturnType {
           ...config.UI.sidebar.otherLinks,
         ].filter(Boolean),
       },
+      */
     ].filter(Boolean);
 
     const accountNavItems: ReturnType['accountNavItems'] = [

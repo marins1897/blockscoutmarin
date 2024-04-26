@@ -2,7 +2,7 @@ import type { ChakraProps } from '@chakra-ui/react';
 import { GrowthBookProvider } from '@growthbook/growthbook-react';
 import * as Sentry from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+//import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import React from 'react';
 
@@ -71,7 +71,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                   </SocketProvider>
                 </ScrollDirectionProvider>
               </GrowthBookProvider>
-              <ReactQueryDevtools buttonPosition="bottom-left" position="left"/>
+              { /*<ReactQueryDevtools buttonPosition="bottom-right" position="right"/>*/ }
               <GoogleAnalytics/>
             </QueryClientProvider>
           </AppContextProvider>

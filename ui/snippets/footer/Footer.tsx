@@ -1,6 +1,7 @@
 import type { GridProps } from '@chakra-ui/react';
 import { Box, Grid, Flex, Text, Link, VStack, Skeleton } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 import React from 'react';
 
 import type { CustomLinksGroup } from 'types/footerLinks';
@@ -197,9 +198,11 @@ const Footer = () => {
       }}
     >
 
-      { renderNetworkInfo({ lg: 'network' }) }
-      { renderProjectInfo({ lg: 'info' }) }
+      <Image src={ config.meta.og.imageUrl } alt="eSljedivost" width={ 32 } height={ 32 }/>
 
+      { /* { renderNetworkInfo({ lg: 'network' }) } */ }
+      { /* { renderProjectInfo({ lg: 'info' }) } */ }
+      { /*
       <Grid
         gridArea={{ lg: 'links-bottom' }}
         gap={ 1 }
@@ -220,6 +223,7 @@ const Footer = () => {
       >
         { BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) }
       </Grid>
+      */ }
     </Grid>
   );
 };

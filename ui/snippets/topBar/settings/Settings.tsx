@@ -1,10 +1,10 @@
-import { Box, IconButton, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react';
+import { /*Box,*/ IconButton, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
 
 import IconSvg from 'ui/shared/IconSvg';
 
 import SettingsColorTheme from './SettingsColorTheme';
-import SettingsIdentIcon from './SettingsIdentIcon';
+//import SettingsIdentIcon from './SettingsIdentIcon';
 
 const Settings = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -14,7 +14,7 @@ const Settings = () => {
       <PopoverTrigger>
         <IconButton
           variant="simple"
-          colorScheme="blue"
+          colorScheme="black"
           aria-label="User settings"
           icon={ <IconSvg name="gear_slim" boxSize={ 5 }/> }
           p="1px"
@@ -25,8 +25,8 @@ const Settings = () => {
       <PopoverContent overflowY="hidden" w="auto" fontSize="sm">
         <PopoverBody boxShadow="2xl" p={ 4 }>
           <SettingsColorTheme/>
-          <Box borderColor="divider" borderWidth="1px" my={ 3 }/>
-          <SettingsIdentIcon/>
+          { /*<Box borderColor="divider" borderWidth="1px" my={ 3 }/>
+          <SettingsIdentIcon/>*/ }
         </PopoverBody>
       </PopoverContent>
     </Popover>

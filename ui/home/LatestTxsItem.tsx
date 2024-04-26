@@ -14,12 +14,12 @@ import config from 'configs/app';
 import getValueWithUnit from 'lib/getValueWithUnit';
 import useTimeAgoIncrement from 'lib/hooks/useTimeAgoIncrement';
 import { currencyUnits } from 'lib/units';
-import AddressFromTo from 'ui/shared/address/AddressFromTo';
+//import AddressFromTo from 'ui/shared/address/AddressFromTo';
 import TxEntity from 'ui/shared/entities/tx/TxEntity';
 import TxStatus from 'ui/shared/statusTag/TxStatus';
 import TxFeeStability from 'ui/shared/tx/TxFeeStability';
 import TxWatchListTags from 'ui/shared/tx/TxWatchListTags';
-import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
+//import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
 import TxType from 'ui/txs/TxType';
 
 type Props = {
@@ -28,7 +28,7 @@ type Props = {
 }
 
 const LatestTxsItem = ({ tx, isLoading }: Props) => {
-  const dataTo = tx.to ? tx.to : tx.created_contract;
+  //const dataTo = tx.to ? tx.to : tx.created_contract;
   const timeAgo = useTimeAgoIncrement(tx.timestamp || '0', true);
   const columnNum = config.UI.views.tx.hiddenFields?.value && config.UI.views.tx.hiddenFields?.tx_fee ? 2 : 3;
 
@@ -48,7 +48,7 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
       display={{ base: 'none', lg: 'grid' }}
     >
       <Flex overflow="hidden" w="100%">
-        <TxAdditionalInfo tx={ tx } isLoading={ isLoading } my="3px"/>
+        { /*<TxAdditionalInfo tx={ tx } isLoading={ isLoading } my="3px"/>*/ }
         <Box ml={ 3 } w="calc(100% - 40px)">
           <HStack flexWrap="wrap" my="3px">
             <TxType types={ tx.tx_types } isLoading={ isLoading }/>
@@ -80,12 +80,14 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
           </Flex>
         </Box>
       </Flex>
+      { /*
       <AddressFromTo
         from={ tx.from }
         to={ dataTo }
         isLoading={ isLoading }
         mode="compact"
       />
+      */ }
       <Flex flexDir="column">
         { !config.UI.views.tx.hiddenFields?.value && (
           <Skeleton isLoaded={ !isLoading } my="3px">

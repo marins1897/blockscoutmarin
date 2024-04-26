@@ -24,7 +24,14 @@ const Item = ({ label, text, isLoading }: { label: string; text: string; isLoadi
   );
 };
 
+const removeAddressArg = (methodCall: string) => {
+  // Replace 'address arg0,' with an empty string
+  return methodCall.replace(/address arg\d+,\s*/, '');
+};
+
 const LogDecodedInputDataHeader = ({ methodId, methodCall, isLoading }: Props) => {
+  const cleanedMethodCall = removeAddressArg(methodCall);
+
   return (
     <VStack
       align="flex-start"
@@ -33,7 +40,7 @@ const LogDecodedInputDataHeader = ({ methodId, methodCall, isLoading }: Props) =
       lineHeight={ 5 }
     >
       <Item label="Method id" text={ methodId } isLoading={ isLoading }/>
-      <Item label="Call" text={ methodCall } isLoading={ isLoading }/>
+      <Item label="Call" text={ cleanedMethodCall } isLoading={ isLoading }/>
     </VStack>
   );
 };

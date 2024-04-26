@@ -20,13 +20,20 @@ const NumberWidgetsList = () => {
     return <DataFetchAlert/>;
   }
 
+  const filteredCounters = data?.counters?.filter(({ id }) => ![
+    'lastNewContracts',
+    'totalAccounts',
+    'totalAddresses',
+    'totalTokens',
+  ].includes(id));
+
   return (
     <Grid
       gridTemplateColumns={{ base: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
       gridGap={ 4 }
     >
       {
-        data?.counters?.map(({ id, title, value, units, description }, index) => {
+        filteredCounters?.map(({ id, title, value, units, description }, index) => {
 
           let unitsStr = '';
           if (UNITS_WITHOUT_SPACE.includes(units)) {

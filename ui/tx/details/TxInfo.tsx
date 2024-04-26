@@ -43,13 +43,13 @@ import RawInputData from 'ui/shared/RawInputData';
 import TxStatus from 'ui/shared/statusTag/TxStatus';
 import TextSeparator from 'ui/shared/TextSeparator';
 import TxFeeStability from 'ui/shared/tx/TxFeeStability';
-import Utilization from 'ui/shared/Utilization/Utilization';
+//import Utilization from 'ui/shared/Utilization/Utilization';
 import VerificationSteps from 'ui/shared/verificationSteps/VerificationSteps';
 import TxDetailsActions from 'ui/tx/details/txDetailsActions/TxDetailsActions';
 import TxDetailsBurntFees from 'ui/tx/details/TxDetailsBurntFees';
 import TxDetailsFeePerGas from 'ui/tx/details/TxDetailsFeePerGas';
 import TxDetailsGasPrice from 'ui/tx/details/TxDetailsGasPrice';
-import TxDetailsOther from 'ui/tx/details/TxDetailsOther';
+//import TxDetailsOther from 'ui/tx/details/TxDetailsOther';
 import TxDetailsTokenTransfers from 'ui/tx/details/TxDetailsTokenTransfers';
 import TxDetailsWithdrawalStatus from 'ui/tx/details/TxDetailsWithdrawalStatus';
 import TxRevertReason from 'ui/tx/details/TxRevertReason';
@@ -81,11 +81,11 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
     return null;
   }
 
-  const addressFromTags = [
+  /*const addressFromTags = [
     ...data.from.private_tags || [],
     ...data.from.public_tags || [],
     ...data.from.watchlist_names || [],
-  ].map((tag) => <Tag key={ tag.label }>{ tag.display_name }</Tag>);
+  ].map((tag) => <Tag key={ tag.label }>{ tag.display_name }</Tag>);*/
 
   const toAddress = data.to ? data.to : data.created_contract;
   const addressToTags = [
@@ -292,7 +292,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       <DetailsInfoItemDivider/>
 
       <TxDetailsActions hash={ data.hash } actions={ data.actions } isTxDataLoading={ isLoading }/>
-
+      { /*
       <DetailsInfoItem
         title="From"
         hint="Address (external or contract) sending the transaction"
@@ -310,6 +310,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
           </Flex>
         ) }
       </DetailsInfoItem>
+      */ }
       <DetailsInfoItem
         title={ data.to?.is_contract ? 'Interacted with contract' : 'To' }
         hint="Address (external or contract) receiving the transaction"
@@ -353,7 +354,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       </DetailsInfoItem>
       { data.token_transfers && <TxDetailsTokenTransfers data={ data.token_transfers } txHash={ data.hash } isOverflow={ data.token_transfers_overflow }/> }
 
-      <DetailsInfoItemDivider/>
+      { /*<DetailsInfoItemDivider/>*/ }
 
       { data.zkevm_sequence_hash && (
         <DetailsInfoItem
@@ -423,7 +424,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       <TxDetailsGasPrice gasPrice={ data.gas_price } isLoading={ isLoading }/>
 
       <TxDetailsFeePerGas txFee={ data.fee.value } gasUsed={ data.gas_used } isLoading={ isLoading }/>
-
+      { /*
       <DetailsInfoItem
         title="Gas usage & limit by txn"
         hint="Actual gas amount used by the transaction"
@@ -434,6 +435,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
         <Skeleton isLoaded={ !isLoading }>{ BigNumber(data.gas_limit).toFormat() }</Skeleton>
         <Utilization ml={ 4 } value={ BigNumber(data.gas_used || 0).dividedBy(BigNumber(data.gas_limit)).toNumber() } isLoading={ isLoading }/>
       </DetailsInfoItem>
+      */ }
       { !config.UI.views.tx.hiddenFields?.gas_fees &&
             (data.base_fee_per_gas || data.max_fee_per_gas || data.max_priority_fee_per_gas) && (
         <DetailsInfoItem
@@ -578,7 +580,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
               <DetailsInfoItemDivider/>
             </>
           ) }
-          <TxDetailsOther nonce={ data.nonce } type={ data.type } position={ data.position }/>
+          { /*<TxDetailsOther nonce={ data.nonce } type={ data.type } position={ data.position }/>*/ }
           <DetailsInfoItem
             title="Raw input"
             hint="Binary data included with the transaction. See logs tab for additional info"

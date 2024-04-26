@@ -9,7 +9,7 @@ const title = 'GraphQL API documentation';
 const config: Feature<{ defaultTxHash: string | undefined }> = (() => {
   return Object.freeze({
     title,
-    isEnabled: true,
+    isEnabled: false,
     defaultTxHash,
   });
 })();

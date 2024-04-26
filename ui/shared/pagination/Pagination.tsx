@@ -29,6 +29,8 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           size="sm"
           onClick={ resetPage }
           isDisabled={ page === 1 || isLoading }
+          borderColor="#3AADA8"
+          color="#3AADA8"
         >
         First
         </Button>
@@ -42,6 +44,8 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           w="36px"
           icon={ <IconSvg name="arrows/east-mini" w={ 5 } h={ 5 }/> }
           isDisabled={ !canGoBackwards || isLoading }
+          borderColor="#3AADA8"
+          color="#3AADA8"
         />
       </Skeleton>
       <Skeleton isLoaded={ !showSkeleton } display="inline-block" borderRadius="base">
@@ -67,6 +71,8 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           w="36px"
           icon={ <IconSvg name="arrows/east-mini" w={ 5 } h={ 5 } transform="rotate(180deg)"/> }
           isDisabled={ !hasNextPage || isLoading }
+          borderColor="#3AADA8"
+          color="#3AADA8"
         />
       </Skeleton>
       { /* not implemented yet */ }

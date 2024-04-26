@@ -48,7 +48,7 @@ const BlocksTable = ({ data, isLoading, top, page, showSocketInfo, socketInfoNum
             { !config.UI.views.block.hiddenFields?.miner &&
             <Th width={ `${ VALIDATOR_COL_WEIGHT / widthBase * 100 }%` } minW="160px">{ capitalize(getNetworkValidatorTitle()) }</Th> }
             <Th width="64px" isNumeric>Txn</Th>
-            <Th width={ `${ GAS_COL_WEIGHT / widthBase * 100 }%` }>Gas used</Th>
+            { /*<Th width={ `${ GAS_COL_WEIGHT / widthBase * 100 }%` }>Gas used</Th>*/ }
             { !isRollup && !config.UI.views.block.hiddenFields?.total_reward &&
               <Th width={ `${ REWARD_COL_WEIGHT / widthBase * 100 }%` }>Reward { currencyUnits.ether }</Th> }
             { !isRollup && !config.UI.views.block.hiddenFields?.burnt_fees &&

@@ -13,12 +13,12 @@ import config from 'configs/app';
 import getValueWithUnit from 'lib/getValueWithUnit';
 import useTimeAgoIncrement from 'lib/hooks/useTimeAgoIncrement';
 import { currencyUnits } from 'lib/units';
-import AddressFromTo from 'ui/shared/address/AddressFromTo';
+//import AddressFromTo from 'ui/shared/address/AddressFromTo';
 import TxEntity from 'ui/shared/entities/tx/TxEntity';
 import TxStatus from 'ui/shared/statusTag/TxStatus';
 import TxFeeStability from 'ui/shared/tx/TxFeeStability';
 import TxWatchListTags from 'ui/shared/tx/TxWatchListTags';
-import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
+//import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
 import TxType from 'ui/txs/TxType';
 
 type Props = {
@@ -27,7 +27,7 @@ type Props = {
 }
 
 const LatestTxsItem = ({ tx, isLoading }: Props) => {
-  const dataTo = tx.to ? tx.to : tx.created_contract;
+  //const dataTo = tx.to ? tx.to : tx.created_contract;
   const timeAgo = useTimeAgoIncrement(tx.timestamp || '0', true);
 
   return (
@@ -45,7 +45,7 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
           <TxStatus status={ tx.status } errorText={ tx.status === 'error' ? tx.result : undefined } isLoading={ isLoading }/>
           <TxWatchListTags tx={ tx } isLoading={ isLoading }/>
         </HStack>
-        <TxAdditionalInfo tx={ tx } isMobile isLoading={ isLoading }/>
+        { /*<TxAdditionalInfo tx={ tx } isMobile isLoading={ isLoading }/>*/ }
       </Flex>
       <Flex
         mt={ 2 }
@@ -66,6 +66,7 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
           </Skeleton>
         ) }
       </Flex>
+      { /*
       <AddressFromTo
         from={ tx.from }
         to={ dataTo }
@@ -74,6 +75,7 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
         fontWeight="500"
         mb={ 3 }
       />
+      */ }
       { !config.UI.views.tx.hiddenFields?.value && (
         <Skeleton isLoaded={ !isLoading } mb={ 2 } fontSize="sm" w="fit-content">
           <Text as="span">Value { currencyUnits.ether } </Text>

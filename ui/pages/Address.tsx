@@ -7,20 +7,20 @@ import type { RoutedTab } from 'ui/shared/Tabs/types';
 import config from 'configs/app';
 import useApiQuery from 'lib/api/useApiQuery';
 import { useAppContext } from 'lib/contexts/app';
-import useContractTabs from 'lib/hooks/useContractTabs';
+//import useContractTabs from 'lib/hooks/useContractTabs';
 import useIsSafeAddress from 'lib/hooks/useIsSafeAddress';
 import getQueryParamString from 'lib/router/getQueryParamString';
 import { ADDRESS_TABS_COUNTERS } from 'stubs/address';
 import { USER_OPS_ACCOUNT } from 'stubs/userOps';
 import AddressAccountHistory from 'ui/address/AddressAccountHistory';
-import AddressBlocksValidated from 'ui/address/AddressBlocksValidated';
-import AddressCoinBalance from 'ui/address/AddressCoinBalance';
-import AddressContract from 'ui/address/AddressContract';
+//import AddressBlocksValidated from 'ui/address/AddressBlocksValidated';
+//import AddressCoinBalance from 'ui/address/AddressCoinBalance';
+//import AddressContract from 'ui/address/AddressContract';
 import AddressDetails from 'ui/address/AddressDetails';
-import AddressInternalTxs from 'ui/address/AddressInternalTxs';
-import AddressLogs from 'ui/address/AddressLogs';
-import AddressTokens from 'ui/address/AddressTokens';
-import AddressTokenTransfers from 'ui/address/AddressTokenTransfers';
+//import AddressInternalTxs from 'ui/address/AddressInternalTxs';
+//import AddressLogs from 'ui/address/AddressLogs';
+//import AddressTokens from 'ui/address/AddressTokens';
+//import AddressTokenTransfers from 'ui/address/AddressTokenTransfers';
 import AddressTxs from 'ui/address/AddressTxs';
 import AddressUserOps from 'ui/address/AddressUserOps';
 import AddressWithdrawals from 'ui/address/AddressWithdrawals';
@@ -35,13 +35,13 @@ import AddressAddToWallet from 'ui/shared/address/AddressAddToWallet';
 import AddressEntity from 'ui/shared/entities/address/AddressEntity';
 import EnsEntity from 'ui/shared/entities/ens/EnsEntity';
 import EntityTags from 'ui/shared/EntityTags';
-import IconSvg from 'ui/shared/IconSvg';
+//import IconSvg from 'ui/shared/IconSvg';
 import NetworkExplorers from 'ui/shared/NetworkExplorers';
 import PageTitle from 'ui/shared/Page/PageTitle';
 import RoutedTabs from 'ui/shared/Tabs/RoutedTabs';
 import TabsSkeleton from 'ui/shared/Tabs/TabsSkeleton';
 
-const TOKEN_TABS = [ 'tokens_erc20', 'tokens_nfts', 'tokens_nfts_collection', 'tokens_nfts_list' ];
+//const TOKEN_TABS = [ 'tokens_erc20', 'tokens_nfts', 'tokens_nfts_collection', 'tokens_nfts_list' ];
 
 const txInterpretation = config.features.txInterpretation;
 
@@ -73,7 +73,7 @@ const AddressPageContent = () => {
   const isSafeAddress = useIsSafeAddress(!addressQuery.isPlaceholderData && addressQuery.data?.is_contract ? hash : undefined);
   const safeIconColor = useColorModeValue('black', 'white');
 
-  const contractTabs = useContractTabs(addressQuery.data);
+  //const contractTabs = useContractTabs(addressQuery.data);
 
   const tabs: Array<RoutedTab> = React.useMemo(() => {
     return [
@@ -106,6 +106,8 @@ const AddressPageContent = () => {
           component: <AddressWithdrawals scrollRef={ tabsScrollRef }/>,
         } :
         undefined,
+
+      /*
       {
         id: 'token_transfers',
         title: 'Token transfers',
@@ -163,8 +165,9 @@ const AddressPageContent = () => {
         component: <AddressContract tabs={ contractTabs }/>,
         subTabs: contractTabs.map(tab => tab.id),
       } : undefined,
+      */
     ].filter(Boolean);
-  }, [ addressQuery.data, contractTabs, addressTabsCountersQuery.data, userOpsAccountQuery.data ]);
+  }, [ /*addressQuery.data, contractTabs,*/ addressTabsCountersQuery.data, userOpsAccountQuery.data ]);
 
   const isLoading = addressQuery.isPlaceholderData || (config.features.userOps.isEnabled && userOpsAccountQuery.isPlaceholderData);
 

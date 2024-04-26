@@ -11,7 +11,7 @@ import type { Transaction } from 'types/api/transaction';
 
 import config from 'configs/app';
 import useTimeAgoIncrement from 'lib/hooks/useTimeAgoIncrement';
-import AddressFromTo from 'ui/shared/address/AddressFromTo';
+//import AddressFromTo from 'ui/shared/address/AddressFromTo';
 import Tag from 'ui/shared/chakra/Tag';
 import CurrencyValue from 'ui/shared/CurrencyValue';
 import BlockEntity from 'ui/shared/entities/block/BlockEntity';
@@ -19,7 +19,7 @@ import TxEntity from 'ui/shared/entities/tx/TxEntity';
 import TxStatus from 'ui/shared/statusTag/TxStatus';
 import TxFeeStability from 'ui/shared/tx/TxFeeStability';
 import TxWatchListTags from 'ui/shared/tx/TxWatchListTags';
-import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
+//import TxAdditionalInfo from 'ui/txs/TxAdditionalInfo';
 
 import TxTranslationType from './TxTranslationType';
 import TxType from './TxType';
@@ -32,8 +32,8 @@ type Props = {
   isLoading?: boolean;
 }
 
-const TxsTableItem = ({ tx, showBlockInfo, currentAddress, enableTimeIncrement, isLoading }: Props) => {
-  const dataTo = tx.to ? tx.to : tx.created_contract;
+const TxsTableItem = ({ tx, showBlockInfo/*, currentAddress*/, enableTimeIncrement, isLoading }: Props) => {
+  //const dataTo = tx.to ? tx.to : tx.created_contract;
   const timeAgo = useTimeAgoIncrement(tx.timestamp, enableTimeIncrement);
 
   return (
@@ -45,9 +45,11 @@ const TxsTableItem = ({ tx, showBlockInfo, currentAddress, enableTimeIncrement, 
       transitionTimingFunction="linear"
       key={ tx.hash }
     >
+      { /*
       <Td pl={ 4 }>
         <TxAdditionalInfo tx={ tx } isLoading={ isLoading }/>
       </Td>
+      */ }
       <Td pr={ 4 }>
         <VStack alignItems="start" lineHeight="24px">
           <TxEntity
@@ -92,6 +94,7 @@ const TxsTableItem = ({ tx, showBlockInfo, currentAddress, enableTimeIncrement, 
           ) }
         </Td>
       ) }
+      { /*
       <Td>
         <AddressFromTo
           from={ tx.from }
@@ -102,6 +105,7 @@ const TxsTableItem = ({ tx, showBlockInfo, currentAddress, enableTimeIncrement, 
           mode="compact"
         />
       </Td>
+    */ }
       { !config.UI.views.tx.hiddenFields?.value && (
         <Td isNumeric>
           <CurrencyValue value={ tx.value } accuracy={ 8 } isLoading={ isLoading }/>

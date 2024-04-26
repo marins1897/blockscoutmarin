@@ -14,7 +14,7 @@ import AddressEntity from 'ui/shared/entities/address/AddressEntity';
 import BlockEntity from 'ui/shared/entities/block/BlockEntity';
 import TxEntity from 'ui/shared/entities/tx/TxEntity';
 
-import AddressBalance from './details/AddressBalance';
+//import AddressBalance from './details/AddressBalance';
 import AddressNameInfo from './details/AddressNameInfo';
 import TokenSelect from './tokenSelect/TokenSelect';
 import useAddressCountersQuery from './utils/useAddressCountersQuery';
@@ -90,15 +90,17 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
         { data.is_contract && data.creation_tx_hash && data.creator_address_hash && (
           <DetailsInfoItem
             title="Creator"
-            hint="Transaction and address of creation"
+            hint="Address of creation"
             isLoading={ addressQuery.isPlaceholderData }
           >
+            { /*
             <AddressEntity
               address={{ hash: data.creator_address_hash }}
               truncation="constant"
               noIcon
             />
-            <Text whiteSpace="pre"> at txn </Text>
+            */ }
+            <Text /*whiteSpace="pre"*/> at txn </Text>
             <TxEntity hash={ data.creation_tx_hash } truncation="constant" noIcon noCopy={ false }/>
           </DetailsInfoItem>
         ) }
@@ -115,7 +117,7 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
             />
           </DetailsInfoItem>
         ) }
-        <AddressBalance data={ data } isLoading={ addressQuery.isPlaceholderData }/>
+        { /*<AddressBalance data={ data } isLoading={ addressQuery.isPlaceholderData }/>*/ }
         { data.has_tokens && (
           <DetailsInfoItem
             title="Tokens"
@@ -162,6 +164,7 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
               0 }
           </DetailsInfoItem>
         ) }
+        { /*
         { countersQuery.data?.gas_usage_count && (
           <DetailsInfoItem
             title="Gas used"
@@ -181,6 +184,7 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
               0 }
           </DetailsInfoItem>
         ) }
+      */ }
         { data.has_validated_blocks && (
           <DetailsInfoItem
             title="Blocks validated"

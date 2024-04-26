@@ -25,21 +25,41 @@ export default function useStats() {
   const [ currentSection, setCurrentSection ] = useState('all');
   const [ filterQuery, setFilterQuery ] = useState('');
   const [ interval, setInterval ] = useState<StatsIntervalIds>('oneMonth');
-  const sectionIds = useMemo(() => data?.sections?.map(({ id }) => id), [ data ]);
+
+  const filteredSections = useMemo(() => {
+    const allowedSections = [ 'transactions', 'blocks', 'contracts' ];
+    return data?.sections?.filter(section => allowedSections.includes(section.id));
+  }, [ data ]);
+  //const sectionIds = useMemo(() => data?.sections?.map(({ id }) => id), [ data ]);
+  // Filtered sectionIds to include only 'transactions', 'blocks', and 'contracts'
+  const sectionIds = useMemo(() => {
+    const allowedSections = [ 'transactions', 'blocks', 'contracts' ];
+    return data?.sections?.map(({ id }) => id).filter(id => allowedSections.includes(id));
+  }, [ data ]);
 
   const debouncedFilterQuery = useDebounce(filterQuery, 500);
 
   const displayedCharts = React.useMemo(() => {
-    return data?.sections
-      ?.map((section) => {
-        const charts = section.charts.filter((chart) => isSectionMatches(section, currentSection) && isChartNameMatches(debouncedFilterQuery, chart));
+    // excluded chart IDs for each section
+    const exclusions: Record<string, Array<string>> = {
+      transactions: [ 'averageTxnFee', 'txnsFee' ],
+      blocks: [ 'averageBlockRewards' ],
+      contracts: [ 'newVerifiedContracts', 'verifiedContractsGrowth' ],
+    };
 
-        return {
-          ...section,
-          charts,
-        };
-      }).filter((section) => section.charts.length > 0);
-  }, [ currentSection, data?.sections, debouncedFilterQuery ]);
+    return filteredSections?.map(section => {
+    // Filter out the excluded charts for the current section
+      const charts = section.charts.filter(chart =>
+        !exclusions[section.id]?.includes(chart.id) &&
+        isChartNameMatches(debouncedFilterQuery, chart) && isSectionMatches(section, currentSection),
+      );
+
+      return {
+        ...section,
+        charts,
+      };
+    }).filter(section => section.charts.length > 0);
+  }, [ filteredSections, debouncedFilterQuery, currentSection ]);
 
   const handleSectionChange = useCallback((newSection: string) => {
     setCurrentSection(newSection);
@@ -54,7 +74,7 @@ export default function useStats() {
   }, []);
 
   return React.useMemo(() => ({
-    sections: data?.sections,
+    sections: filteredSections,
     sectionIds,
     isPlaceholderData,
     isError,
@@ -66,7 +86,7 @@ export default function useStats() {
     handleFilterChange,
     displayedCharts,
   }), [
-    data,
+    filteredSections,
     sectionIds,
     isPlaceholderData,
     isError,

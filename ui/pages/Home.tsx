@@ -20,7 +20,7 @@ const Home = () => {
       <Box
         w="100%"
         background={ config.UI.homepage.plate.background }
-        borderRadius="24px"
+        borderRadius="5px"
         padding={{ base: '24px', lg: '48px' }}
         minW={{ base: 'unset', lg: '900px' }}
         data-label="hero plate"

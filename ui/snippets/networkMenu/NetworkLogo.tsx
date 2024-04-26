@@ -1,5 +1,5 @@
 import type { StyleProps } from '@chakra-ui/react';
-import { Box, Image, useColorModeValue, Skeleton } from '@chakra-ui/react';
+import { Box, Image, useColorModeValue, Skeleton, Text } from '@chakra-ui/react';
 import React from 'react';
 
 import { route } from 'nextjs-routes';
@@ -15,7 +15,7 @@ interface Props {
 
 const LogoFallback = ({ isCollapsed, isSmall, imageProps }: { isCollapsed?: boolean; isSmall?: boolean; imageProps?: StyleProps }) => {
   const field = isSmall ? 'icon' : 'logo';
-  const logoColor = useColorModeValue('blue.600', 'white');
+  const logoColor = useColorModeValue('blue.500', 'white');
 
   const display = isSmall ? {
     base: 'none',
@@ -46,6 +46,8 @@ const LogoFallback = ({ isCollapsed, isSmall, imageProps }: { isCollapsed?: bool
 const NetworkLogo = ({ isCollapsed, onClick, imageProps }: Props) => {
 
   const logoSrc = useColorModeValue(config.UI.sidebar.logo.default, config.UI.sidebar.logo.dark || config.UI.sidebar.logo.default);
+  // eslint-disable-next-line no-console
+  console.log(logoSrc);
   const iconSrc = useColorModeValue(config.UI.sidebar.icon.default, config.UI.sidebar.icon.dark || config.UI.sidebar.icon.default);
   const darkModeFilter = { filter: 'brightness(0) invert(1)' };
   const logoStyle = useColorModeValue({}, !config.UI.sidebar.logo.dark ? darkModeFilter : {});
@@ -55,13 +57,14 @@ const NetworkLogo = ({ isCollapsed, onClick, imageProps }: Props) => {
     <Box
       as="a"
       href={ route({ pathname: '/' }) }
-      width={{ base: '120px', lg: isCollapsed === false ? '120px' : '30px', xl: isCollapsed ? '30px' : '120px' }}
-      height={{ base: '24px', lg: isCollapsed === false ? '24px' : '30px', xl: isCollapsed ? '30px' : '24px' }}
+      width={{ base: '150px', lg: isCollapsed === false ? '150px' : '30px', xl: isCollapsed ? '32px' : '150px' }}
+      height={{ base: '24px', lg: isCollapsed === false ? '24px' : '30px', xl: isCollapsed ? '32px' : '32px' }}
       display="inline-flex"
       overflow="hidden"
       onClick={ onClick }
       flexShrink={ 0 }
       aria-label="Link to main page"
+      style={{ display: 'flex', alignItems: 'center' }}
     >
       { /* big logo */ }
       <Image
@@ -85,6 +88,13 @@ const NetworkLogo = ({ isCollapsed, onClick, imageProps }: Props) => {
         style={ iconStyle }
         { ...imageProps }
       />
+      <Text
+        marginLeft={ 3.5 }
+        fontWeight="500"
+        color="inherit"
+      >
+      eSljedivost
+      </Text>
     </Box>
   );
 };

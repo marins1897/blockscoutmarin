@@ -1,5 +1,5 @@
-import { Tr, Td, Flex, Box, Tooltip, Skeleton, useColorModeValue } from '@chakra-ui/react';
-import BigNumber from 'bignumber.js';
+import { Tr, Td, Flex, /*Box,*/ Tooltip, Skeleton/* , useColorModeValue*/ } from '@chakra-ui/react';
+//import BigNumber from 'bignumber.js';
 import { motion } from 'framer-motion';
 import React from 'react';
 
@@ -8,16 +8,16 @@ import type { Block } from 'types/api/block';
 import { route } from 'nextjs-routes';
 
 import config from 'configs/app';
-import getBlockTotalReward from 'lib/block/getBlockTotalReward';
-import { WEI } from 'lib/consts';
+//import getBlockTotalReward from 'lib/block/getBlockTotalReward';
+//import { WEI } from 'lib/consts';
 import BlockTimestamp from 'ui/blocks/BlockTimestamp';
 import AddressEntity from 'ui/shared/entities/address/AddressEntity';
 import BlockEntity from 'ui/shared/entities/block/BlockEntity';
-import GasUsedToTargetRatio from 'ui/shared/GasUsedToTargetRatio';
-import IconSvg from 'ui/shared/IconSvg';
+//import GasUsedToTargetRatio from 'ui/shared/GasUsedToTargetRatio';
+//import IconSvg from 'ui/shared/IconSvg';
 import LinkInternal from 'ui/shared/LinkInternal';
-import TextSeparator from 'ui/shared/TextSeparator';
-import Utilization from 'ui/shared/Utilization/Utilization';
+//import TextSeparator from 'ui/shared/TextSeparator';
+//import Utilization from 'ui/shared/Utilization/Utilization';
 
 interface Props {
   data: Block;
@@ -25,15 +25,15 @@ interface Props {
   enableTimeIncrement?: boolean;
 }
 
-const isRollup = config.features.rollup.isEnabled;
+//const isRollup = config.features.rollup.isEnabled;
 
 const BlocksTableItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
-  const totalReward = getBlockTotalReward(data);
-  const burntFees = BigNumber(data.burnt_fees || 0);
-  const txFees = BigNumber(data.tx_fees || 0);
+  //const totalReward = getBlockTotalReward(data);
+  //const burntFees = BigNumber(data.burnt_fees || 0);
+  //const txFees = BigNumber(data.tx_fees || 0);
 
-  const separatorColor = useColorModeValue('gray.200', 'gray.700');
-  const burntFeesIconColor = useColorModeValue('gray.500', 'inherit');
+  //const separatorColor = useColorModeValue('gray.200', 'gray.700');
+  //const burntFeesIconColor = useColorModeValue('gray.500', 'inherit');
 
   return (
     <Tr
@@ -86,6 +86,7 @@ const BlocksTableItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
           </Skeleton>
         ) : data.tx_count }
       </Td>
+      { /*
       { !isRollup && !config.UI.views.block.hiddenFields?.total_reward && (
         <Td fontSize="sm">
           <Skeleton isLoaded={ !isLoading } display="inline-block">{ BigNumber(data.gas_used || 0).toFormat() }</Skeleton>
@@ -128,6 +129,7 @@ const BlocksTableItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
           </Tooltip>
         </Td>
       ) }
+    */ }
     </Tr>
   );
 };

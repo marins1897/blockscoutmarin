@@ -432,9 +432,10 @@ const bridgedTokensSchema = yup
 
 const schema = yup
   .object()
-  .noUnknown(true, (params) => {
+
+  /*.noUnknown(true, (params) => {
     return `Unknown ENV variables were provided: ${ params.unknown }`;
-  })
+  })*/
   .shape({
     // I. Build-time ENVs
     // -----------------
@@ -494,10 +495,10 @@ const schema = yup
       .transform(replaceQuotes)
       .json()
       .of(yup.string<NavigationLinkId>().oneOf(NAVIGATION_LINK_IDS)),
-    NEXT_PUBLIC_NETWORK_LOGO: yup.string().test(urlTest),
-    NEXT_PUBLIC_NETWORK_LOGO_DARK: yup.string().test(urlTest),
-    NEXT_PUBLIC_NETWORK_ICON: yup.string().test(urlTest),
-    NEXT_PUBLIC_NETWORK_ICON_DARK: yup.string().test(urlTest),
+    //NEXT_PUBLIC_NETWORK_LOGO: yup.string().test(urlTest),
+    //NEXT_PUBLIC_NETWORK_LOGO_DARK: yup.string().test(urlTest),
+    //NEXT_PUBLIC_NETWORK_ICON: yup.string().test(urlTest),
+    //NEXT_PUBLIC_NETWORK_ICON_DARK: yup.string().test(urlTest),
 
     //     c. footer
     NEXT_PUBLIC_FOOTER_LINKS: yup
@@ -576,7 +577,7 @@ const schema = yup
     NEXT_PUBLIC_AD_TEXT_PROVIDER: yup.string<AdTextProviders>().oneOf(SUPPORTED_AD_TEXT_PROVIDERS),
     NEXT_PUBLIC_PROMOTE_BLOCKSCOUT_IN_TITLE: yup.boolean(),
     NEXT_PUBLIC_OG_DESCRIPTION: yup.string(),
-    NEXT_PUBLIC_OG_IMAGE_URL: yup.string().test(urlTest),
+    //NEXT_PUBLIC_OG_IMAGE_URL: yup.string().test(urlTest),
     NEXT_PUBLIC_SAFE_TX_SERVICE_URL: yup.string().test(urlTest),
     NEXT_PUBLIC_IS_SUAVE_CHAIN: yup.boolean(),
     NEXT_PUBLIC_HAS_USER_OPS: yup.boolean(),

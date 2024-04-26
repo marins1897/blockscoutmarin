@@ -46,3 +46,22 @@ export const buildExternalAssetFilePath = (name: string, value: string) => {
     return;
   }
 };
+
+export const getExternalAssetImgFilePath = (envName: string) => {
+  const parsedValue = getEnvValue(envName);
+
+  if (!parsedValue) {
+    return;
+  }
+
+  return buildExternalAssetImgFilePath(envName);
+};
+
+export const buildExternalAssetImgFilePath = (name: string) => {
+  try {
+    const fileName = name.replace(/^NEXT_PUBLIC_/, '').replace(/_URL$/, '').toLowerCase();
+    return `/assets/${ fileName }.png`;
+  } catch (error) {
+    return;
+  }
+};

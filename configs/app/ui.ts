@@ -4,7 +4,7 @@ import type { ChainIndicatorId } from 'types/homepage';
 import type { NetworkExplorer } from 'types/networks';
 
 import * as views from './ui/views';
-import { getEnvValue, getExternalAssetFilePath, parseEnvJson } from './utils';
+import { getEnvValue, getExternalAssetFilePath, getExternalAssetImgFilePath, parseEnvJson } from './utils';
 
 const hiddenLinks = (() => {
   const parsedValue = parseEnvJson<Array<NavigationLinkId>>(getEnvValue('NEXT_PUBLIC_NAVIGATION_HIDDEN_LINKS')) || [];
@@ -27,12 +27,12 @@ const HOMEPAGE_PLATE_BACKGROUND_DEFAULT = 'radial-gradient(103.03% 103.03% at 0%
 const UI = Object.freeze({
   sidebar: {
     logo: {
-      'default': getExternalAssetFilePath('NEXT_PUBLIC_NETWORK_LOGO'),
-      dark: getExternalAssetFilePath('NEXT_PUBLIC_NETWORK_LOGO_DARK'),
+      'default': getExternalAssetImgFilePath('NEXT_PUBLIC_NETWORK_LOGO'),
+      dark: getExternalAssetImgFilePath('NEXT_PUBLIC_NETWORK_LOGO_DARK'),
     },
     icon: {
-      'default': getExternalAssetFilePath('NEXT_PUBLIC_NETWORK_ICON'),
-      dark: getExternalAssetFilePath('NEXT_PUBLIC_NETWORK_ICON_DARK'),
+      'default': getExternalAssetImgFilePath('NEXT_PUBLIC_NETWORK_ICON'),
+      dark: getExternalAssetImgFilePath('NEXT_PUBLIC_NETWORK_ICON_DARK'),
     },
     hiddenLinks,
     otherLinks: parseEnvJson<Array<NavItemExternal>>(getEnvValue('NEXT_PUBLIC_OTHER_LINKS')) || [],

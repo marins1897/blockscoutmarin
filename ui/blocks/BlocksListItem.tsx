@@ -1,4 +1,4 @@
-import { Flex, Skeleton, Text, Box, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Skeleton, Text, Box/*, useColorModeValue*/ } from '@chakra-ui/react';
 import BigNumber from 'bignumber.js';
 import capitalize from 'lodash/capitalize';
 import React from 'react';
@@ -15,11 +15,11 @@ import { currencyUnits } from 'lib/units';
 import BlockTimestamp from 'ui/blocks/BlockTimestamp';
 import AddressEntity from 'ui/shared/entities/address/AddressEntity';
 import BlockEntity from 'ui/shared/entities/block/BlockEntity';
-import GasUsedToTargetRatio from 'ui/shared/GasUsedToTargetRatio';
+//import GasUsedToTargetRatio from 'ui/shared/GasUsedToTargetRatio';
 import IconSvg from 'ui/shared/IconSvg';
 import LinkInternal from 'ui/shared/LinkInternal';
 import ListItemMobile from 'ui/shared/ListItemMobile/ListItemMobile';
-import TextSeparator from 'ui/shared/TextSeparator';
+//import TextSeparator from 'ui/shared/TextSeparator';
 import Utilization from 'ui/shared/Utilization/Utilization';
 
 interface Props {
@@ -35,7 +35,7 @@ const BlocksListItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
   const burntFees = BigNumber(data.burnt_fees || 0);
   const txFees = BigNumber(data.tx_fees || 0);
 
-  const separatorColor = useColorModeValue('gray.200', 'gray.700');
+  //const separatorColor = useColorModeValue('gray.200', 'gray.700');
 
   return (
     <ListItemMobile rowGap={ 3 } key={ String(data.height) } isAnimated>
@@ -79,6 +79,7 @@ const BlocksListItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
           <Text variant="secondary">{ data.tx_count }</Text>
         }
       </Flex>
+      { /*
       <Box>
         <Text fontWeight={ 500 }>Gas used</Text>
         <Flex mt={ 2 }>
@@ -94,6 +95,7 @@ const BlocksListItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
           ) }
         </Flex>
       </Box>
+        */ }
       { !isRollup && !config.UI.views.block.hiddenFields?.total_reward && (
         <Flex columnGap={ 2 }>
           <Text fontWeight={ 500 }>Reward { currencyUnits.ether }</Text>
