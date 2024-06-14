@@ -28,7 +28,7 @@ const TxType = ({ types, isLoading }: Props) => {
 
   switch (typeToShow) {
     case 'contract_call':
-      label = 'Contract call';
+      label = 'Poziv ugovora';
       colorScheme = 'blue';
       break;
     case 'blob_transaction':
@@ -36,7 +36,7 @@ const TxType = ({ types, isLoading }: Props) => {
       colorScheme = 'yellow';
       break;
     case 'contract_creation':
-      label = 'Contract creation';
+      label = 'Kreiranje ugovora';
       colorScheme = 'blue';
       break;
     case 'token_transfer':

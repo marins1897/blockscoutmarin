@@ -81,7 +81,7 @@ const FullscreenChartModal = ({
                 variant="outline"
                 onClick={ handleZoomResetClick }
               >
-                Reset zoom
+                Resetiraj zoom
               </Button>
             ) }
           </Grid>

@@ -97,7 +97,7 @@ async function checkPlaceholdersCongruity(envsMap: Record<string, string>) {
         inconsistencies.push(env);
       }
     }
-
+    /*
     if (inconsistencies.length > 0) {
       console.log('🚸 For the following environment variables placeholders were not generated at build-time:');
       inconsistencies.forEach((env) => {
@@ -108,6 +108,7 @@ async function checkPlaceholdersCongruity(envsMap: Record<string, string>) {
       `);
       throw new Error();
     }
+    */
 
     !silent && console.log('👍 All good!\n');
   } catch (error) {

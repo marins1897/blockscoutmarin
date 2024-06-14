@@ -89,8 +89,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
         <AddressNameInfo data={ data } isLoading={ addressQuery.isPlaceholderData }/>
         { data.is_contract && data.creation_tx_hash && data.creator_address_hash && (
           <DetailsInfoItem
-            title="Creator"
-            hint="Address of creation"
+            title="Autor"
+            hint="Adresa autora"
             isLoading={ addressQuery.isPlaceholderData }
           >
             { /*
@@ -106,8 +106,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
         ) }
         { data.is_contract && data.implementation_address && (
           <DetailsInfoItem
-            title="Implementation"
-            hint="Implementation address of the proxy contract"
+            title="Implementacija"
+            hint="Adresa ugovora implementacije"
             columnGap={ 1 }
           >
             <AddressEntity
@@ -120,8 +120,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
         { /*<AddressBalance data={ data } isLoading={ addressQuery.isPlaceholderData }/>*/ }
         { data.has_tokens && (
           <DetailsInfoItem
-            title="Tokens"
-            hint="All tokens in the account and total value"
+            title="Tokeni"
+            hint="Svi tokeni i ukupna vrijednost na računu"
             alignSelf="center"
             py={ 0 }
           >
@@ -129,8 +129,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
           </DetailsInfoItem>
         ) }
         <DetailsInfoItem
-          title="Transactions"
-          hint="Number of transactions related to this address"
+          title="Transakcije"
+          hint="Broj transakcija koje sadrže adresu"
           isLoading={ addressQuery.isPlaceholderData || countersQuery.isPlaceholderData }
         >
           { addressQuery.data ? (
@@ -147,8 +147,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
         </DetailsInfoItem>
         { data.has_token_transfers && (
           <DetailsInfoItem
-            title="Transfers"
-            hint="Number of transfers to/from this address"
+            title="Prijenosi"
+            hint="Broj prijenosa koji sadrže adresu"
             isLoading={ addressQuery.isPlaceholderData || countersQuery.isPlaceholderData }
           >
             { addressQuery.data ? (
@@ -187,8 +187,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
       */ }
         { data.has_validated_blocks && (
           <DetailsInfoItem
-            title="Blocks validated"
-            hint="Number of blocks validated by this validator"
+            title="Potvrđeni blokovi"
+            hint="Broj potvrđenih blokova"
             isLoading={ addressQuery.isPlaceholderData || countersQuery.isPlaceholderData }
           >
             { addressQuery.data ? (
@@ -206,8 +206,8 @@ const AddressDetails = ({ addressQuery, scrollRef }: Props) => {
         ) }
         { data.block_number_balance_updated_at && (
           <DetailsInfoItem
-            title="Last balance update"
-            hint="Block number in which the address was updated"
+            title="Zadnje osvježeno stanje"
+            hint="Broj bloka u kojem je adresa osvježena"
             alignSelf="center"
             py={{ base: '2px', lg: 1 }}
             isLoading={ addressQuery.isPlaceholderData }

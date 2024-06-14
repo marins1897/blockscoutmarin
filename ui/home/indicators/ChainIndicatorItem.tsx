@@ -49,7 +49,7 @@ const ChainIndicatorItem = ({ id, title, value, valueDiff, icon, isSelected, onC
     }
 
     if (!stats.data) {
-      return <Text variant="secondary" fontWeight={ 400 }>no data</Text>;
+      return <Text variant="secondary" fontWeight={ 400 }>Nema podataka</Text>;
     }
 
     return <Text variant="secondary" fontWeight={ 600 }>{ value(stats.data) }</Text>;

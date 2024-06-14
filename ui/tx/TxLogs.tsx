@@ -49,7 +49,7 @@ const TxLogs = ({ txQuery, logsFilter }: Props) => {
   }
 
   if (!items.length) {
-    return <Text as="span">There are no logs for this transaction.</Text>;
+    return <Text as="span">Nema logova za ovu transakciju.</Text>;
   }
 
   return (

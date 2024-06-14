@@ -103,7 +103,7 @@ const SearchBarInput = (
               paddingRight: '36px',
             },
           }}
-          placeholder={ isMobile ? 'Search by address / ... ' : 'Search by address / txn hash / block / token... ' }
+          placeholder={ isMobile ? 'Traži po adresi / ... ' : 'Traži po adresi / transakcijskom sažetku / bloku ... ' }
           onChange={ handleChange }
           border={ isHomepage ? 'none' : '2px solid' }
           borderColor={ useColorModeValue('blackAlpha.100', 'whiteAlpha.200') }

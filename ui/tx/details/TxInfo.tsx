@@ -63,10 +63,13 @@ interface Props {
   data: Transaction | undefined;
   isLoading: boolean;
   socketStatus?: 'close' | 'error';
+  contractABI?: any;
+  contractHRName? : any,
+  decodedInput? : any,
 }
 
-const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
-  const [ isExpanded, setIsExpanded ] = React.useState(false);
+const TxInfo = ({ data, isLoading, socketStatus, contractABI, contractHRName, decodedInput }: Props) => {
+  const [ isExpanded, setIsExpanded ] = React.useState(true);
 
   const handleCutClick = React.useCallback(() => {
     setIsExpanded((flag) => !flag);
@@ -95,14 +98,14 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
   ].map((tag) => <Tag key={ tag.label }>{ tag.display_name }</Tag>);
 
   const executionSuccessBadge = toAddress?.is_contract && data.result === 'success' ? (
-    <Tooltip label="Contract execution completed">
+    <Tooltip label="Uspješno izvršen ugovor">
       <chakra.span display="inline-flex" ml={ 2 } mr={ 1 }>
         <IconSvg name="status/success" boxSize={ 4 } color={ executionSuccessIconColor } cursor="pointer"/>
       </chakra.span>
     </Tooltip>
   ) : null;
   const executionFailedBadge = toAddress?.is_contract && Boolean(data.status) && data.result !== 'success' ? (
-    <Tooltip label="Error occurred during contract execution">
+    <Tooltip label="Došlo je do pogreške tijekom izvršavanja ugovora">
       <chakra.span display="inline-flex" ml={ 2 } mr={ 1 }>
         <IconSvg name="status/error" boxSize={ 4 } color="error" cursor="pointer"/>
       </chakra.span>
@@ -126,8 +129,8 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
         </GridItem>
       ) }
       <DetailsInfoItem
-        title="Transaction hash"
-        hint="Unique character string (TxID) assigned to every verified transaction"
+        title="Transakcijski sažetak"
+        hint="Jedinstven niz znakova dodijeljena svakoj transakciji"
         flexWrap="nowrap"
         isLoading={ isLoading }
       >
@@ -148,9 +151,9 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
         title={
           rollupFeature.isEnabled && (rollupFeature.type === 'zkEvm' || rollupFeature.type === 'zkSync') ?
             'L2 status and method' :
-            'Status and method'
+            'Status i metoda'
         }
-        hint="Current transaction state: Success, Failed (Error), or Pending (In Process)"
+        hint="Trenutno stanje transakcije : Uspješno, Neuspješno (Error) ili U tijeku"
         isLoading={ isLoading }
       >
         <TxStatus status={ data.status } errorText={ data.status === 'error' ? data.result : undefined } isLoading={ isLoading }/>
@@ -192,8 +195,8 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       ) }
       { data.revert_reason && (
         <DetailsInfoItem
-          title="Revert reason"
-          hint="The revert reason of the transaction"
+          title="Razlog poništavanja"
+          hint="Razlog poništavanja transakcije"
         >
           <TxRevertReason { ...data.revert_reason }/>
         </DetailsInfoItem>
@@ -208,12 +211,12 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
         </DetailsInfoItem>
       ) }
       <DetailsInfoItem
-        title="Block"
-        hint="Block number containing the transaction"
+        title="Blok"
+        hint="Broj bloka koji sadrži transakciju"
         isLoading={ isLoading }
       >
         { data.block === null ?
-          <Text>Pending</Text> : (
+          <Text>U tijeku</Text> : (
             <BlockEntity
               isLoading={ isLoading }
               number={ data.block }
@@ -224,7 +227,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
           <>
             <TextSeparator color="gray.500"/>
             <Skeleton isLoaded={ !isLoading } color="text_secondary">
-              <span>{ data.confirmations } Block confirmations</span>
+              <span>{ data.confirmations } blok potvrda</span>
             </Skeleton>
           </>
         ) }
@@ -257,8 +260,8 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       ) }
       { data.timestamp && (
         <DetailsInfoItem
-          title="Timestamp"
-          hint="Date & time of transaction inclusion, including length of time for confirmation"
+          title="Vremenska oznaka"
+          hint="Datum i vrijeme stvaranja transakcije te vrijeme potvrđivanja"
           isLoading={ isLoading }
         >
           <DetailsTimestamp timestamp={ data.timestamp } isLoading={ isLoading }/>
@@ -312,8 +315,8 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       </DetailsInfoItem>
       */ }
       <DetailsInfoItem
-        title={ data.to?.is_contract ? 'Interacted with contract' : 'To' }
-        hint="Address (external or contract) receiving the transaction"
+        title={ data.to?.is_contract ? 'Interakcija s ugovorom' : 'Na adresu' }
+        hint="Adresa (vanjska ili ugovora) koja je zaprimila transakciju"
         isLoading={ isLoading }
         flexWrap={{ base: 'wrap', lg: 'nowrap' }}
         columnGap={ 3 }
@@ -328,18 +331,20 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
                 />
                 { executionSuccessBadge }
                 { executionFailedBadge }
+                { contractHRName }
               </Flex>
             ) : (
               <Flex width="100%" whiteSpace="pre" alignItems="center" flexShrink={ 0 }>
-                <span>[Contract </span>
+                <span>[Kreiran </span>
                 <AddressEntity
                   address={ toAddress }
                   isLoading={ isLoading }
                   noIcon
                 />
-                <span>created]</span>
+                <span>ugovor]</span>
                 { executionSuccessBadge }
                 { executionFailedBadge }
+                { contractHRName }
               </Flex>
             ) }
             { addressToTags.length > 0 && (
@@ -349,7 +354,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
             ) }
           </>
         ) : (
-          <span>[ Contract creation ]</span>
+          <span>[ Stvaranje ugovora ]</span>
         ) }
       </DetailsInfoItem>
       { data.token_transfers && <TxDetailsTokenTransfers data={ data.token_transfers } txHash={ data.hash } isOverflow={ data.token_transfers_overflow }/> }
@@ -403,8 +408,8 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       ) }
       { !config.UI.views.tx.hiddenFields?.tx_fee && (
         <DetailsInfoItem
-          title="Transaction fee"
-          hint={ data.blob_gas_used ? 'Transaction fee without blob fee' : 'Total transaction fee' }
+          title="Naknada za transakciju"
+          hint={ data.blob_gas_used ? 'Naknada za transakciju bez naknade za blob' : 'Ukupna naknada za transakciju' }
           isLoading={ isLoading }
         >
           { data.stability_fee ? (
@@ -439,32 +444,33 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
       { !config.UI.views.tx.hiddenFields?.gas_fees &&
             (data.base_fee_per_gas || data.max_fee_per_gas || data.max_priority_fee_per_gas) && (
         <DetailsInfoItem
-          title={ `Gas fees (${ currencyUnits.gwei })` }
+          //title={ `Gas fees (${ currencyUnits.gwei })` }
+          title={ `Naknada u jedinicama` }
           // eslint-disable-next-line max-len
           hint={ `
-                Base Fee refers to the network Base Fee at the time of the block, 
-                while Max Fee & Max Priority Fee refer to the max amount a user is willing to pay 
-                for their tx & to give to the ${ getNetworkValidatorTitle() } respectively
+                Osnovna naknada označava osnovnu naknadu mreže u vrijeme nastanka bloka,
+                dok maksimalna naknada i maksimalna prioritetna naknada označavaju maksimalnu 
+                svotu koju je korisnik voljan platiti za transakciju i dati ju validatoru
               ` }
           isLoading={ isLoading }
         >
           { data.base_fee_per_gas && (
             <Skeleton isLoaded={ !isLoading }>
-              <Text as="span" fontWeight="500">Base: </Text>
+              <Text as="span" fontWeight="500">Osnovna: </Text>
               <Text fontWeight="600" as="span">{ BigNumber(data.base_fee_per_gas).dividedBy(WEI_IN_GWEI).toFixed() }</Text>
               { (data.max_fee_per_gas || data.max_priority_fee_per_gas) && <TextSeparator/> }
             </Skeleton>
           ) }
           { data.max_fee_per_gas && (
             <Skeleton isLoaded={ !isLoading }>
-              <Text as="span" fontWeight="500">Max: </Text>
+              <Text as="span" fontWeight="500">Maksimalna: </Text>
               <Text fontWeight="600" as="span">{ BigNumber(data.max_fee_per_gas).dividedBy(WEI_IN_GWEI).toFixed() }</Text>
               { data.max_priority_fee_per_gas && <TextSeparator/> }
             </Skeleton>
           ) }
           { data.max_priority_fee_per_gas && (
             <Skeleton isLoaded={ !isLoading }>
-              <Text as="span" fontWeight="500">Max priority: </Text>
+              <Text as="span" fontWeight="500">Maksimalna prioritetna: </Text>
               <Text fontWeight="600" as="span">{ BigNumber(data.max_priority_fee_per_gas).dividedBy(WEI_IN_GWEI).toFixed() }</Text>
             </Skeleton>
           ) }
@@ -518,6 +524,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
           ) }
         </>
       ) }
+      { /*
       <GridItem colSpan={{ base: undefined, lg: 2 }}>
         <Element name="TxInfo__cutLink">
           <Skeleton isLoaded={ !isLoading } mt={ 6 } display="inline-block">
@@ -528,13 +535,14 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
               textDecorationStyle="dashed"
               onClick={ handleCutClick }
             >
-              { isExpanded ? 'Hide details' : 'View details' }
+              { isExpanded ? 'Sakrij detalje' : 'Prikaži detalje' }
             </Link>
           </Skeleton>
         </Element>
       </GridItem>
-      { isExpanded && (
-        <>
+    */ }
+         {!isLoading && 
+         <>
           <GridItem colSpan={{ base: undefined, lg: 2 }} mt={{ base: 1, lg: 4 }}/>
           { (data.blob_gas_used || data.max_fee_per_blob_gas || data.blob_gas_price) && (
             <>
@@ -582,22 +590,31 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
           ) }
           { /*<TxDetailsOther nonce={ data.nonce } type={ data.type } position={ data.position }/>*/ }
           <DetailsInfoItem
-            title="Raw input"
-            hint="Binary data included with the transaction. See logs tab for additional info"
+            title="Ulazni parametri"
+            hint="Binarni podaci s kojima se pozvala transakcija. Pogledaj logove za dodatne informacije"
           >
             <RawInputData hex={ data.raw_input }/>
           </DetailsInfoItem>
+          { /*
           { data.decoded_input && (
             <DetailsInfoItem
-              title="Decoded input data"
-              hint="Decoded input data"
+              title="Dekodirani ulazni parametri"
+              hint="Dekodirani ulazni parametri"
             >
               <LogDecodedInputData data={ data.decoded_input }/>
             </DetailsInfoItem>
           ) }
+        */ }
+          { decodedInput && (
+            <DetailsInfoItem
+              title="Dekodirani ulazni parametri"
+              hint="Dekodirani ulazni parametri"
+            >
+              <LogDecodedInputData data={ decodedInput }/>
+            </DetailsInfoItem>
+          ) }
           { data.zksync && <ZkSyncL2TxnBatchHashesInfo data={ data.zksync } isLoading={ isLoading }/> }
-        </>
-      ) }
+          </>}
     </Grid>
   );
 };

@@ -141,9 +141,9 @@ export const withDecodedRevertReason: Transaction = {
   status: 'error',
   result: 'Reverted',
   revert_reason: {
-    method_call: 'SomeCustomError(address addr, uint256 balance)',
+    name: 'SomeCustomError(address addr, uint256 balance)',
     method_id: '50289a9f',
-    parameters: [
+    params: [
       {
         name: 'addr',
         type: 'address',

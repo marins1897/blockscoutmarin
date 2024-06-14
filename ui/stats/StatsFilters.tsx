@@ -34,7 +34,7 @@ const StatsFilters = ({
 
   const sectionsList = [ {
     id: 'all',
-    title: 'All',
+    title: 'Sve',
   }, ... (sections || []) ];
 
   return (
@@ -75,7 +75,7 @@ const StatsFilters = ({
       >
         <FilterInput
           onChange={ onFilterInputChange }
-          placeholder="Find chart, metric..."/>
+          placeholder="Pronađi grafiku, metriku..."/>
       </GridItem>
     </Grid>
   );

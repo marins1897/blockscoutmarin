@@ -51,7 +51,7 @@ const LogItem = ({ address, index, topics, data, decoded, type, tx_hash: txHash,
           </Alert>
         </GridItem>
       ) }
-      { hasTxInfo ? <RowHeader isLoading={ isLoading }>Transaction</RowHeader> : <RowHeader isLoading={ isLoading }>Address</RowHeader> }
+      { hasTxInfo ? <RowHeader isLoading={ isLoading }>Transaction</RowHeader> : <RowHeader isLoading={ isLoading }>Adresa</RowHeader> }
       <GridItem display="flex" alignItems="center">
         { type === 'address' ? (
           <TxEntity
@@ -82,13 +82,13 @@ const LogItem = ({ address, index, topics, data, decoded, type, tx_hash: txHash,
       </GridItem>
       { decoded && (
         <>
-          <RowHeader isLoading={ isLoading }>Decode input data</RowHeader>
+          <RowHeader isLoading={ isLoading }>Dekodirani ulazni parametri</RowHeader>
           <GridItem>
             <LogDecodedInputData data={ decoded } isLoading={ isLoading }/>
           </GridItem>
         </>
       ) }
-      <RowHeader isLoading={ isLoading }>Topics</RowHeader>
+      <RowHeader isLoading={ isLoading }>Predmet</RowHeader>
       <GridItem>
         { topics.filter(Boolean).map((item, index) => (
           <LogTopic
@@ -99,7 +99,7 @@ const LogItem = ({ address, index, topics, data, decoded, type, tx_hash: txHash,
           />
         )) }
       </GridItem>
-      <RowHeader isLoading={ isLoading }>Data</RowHeader>
+      <RowHeader isLoading={ isLoading }>Podaci</RowHeader>
       <Skeleton isLoaded={ !isLoading } p={ 4 } fontSize="sm" borderRadius="md" bgColor={ isLoading ? undefined : dataBgColor }>
         { data }
       </Skeleton>

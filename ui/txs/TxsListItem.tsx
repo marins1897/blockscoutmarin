@@ -66,7 +66,7 @@ const TxsListItem = ({ tx, isLoading, showBlockInfo/*, currentAddress*/, enableT
       </Flex>
       { tx.method && (
         <Flex mt={ 3 }>
-          <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Method </Skeleton>
+          <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Metoda</Skeleton>
           <Skeleton
             isLoaded={ !isLoading }
             color="text_secondary"
@@ -80,7 +80,7 @@ const TxsListItem = ({ tx, isLoading, showBlockInfo/*, currentAddress*/, enableT
       ) }
       { showBlockInfo && tx.block !== null && (
         <Flex mt={ 2 }>
-          <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Block </Skeleton>
+          <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Blok</Skeleton>
           <BlockEntity
             isLoading={ isLoading }
             number={ tx.block }
@@ -112,7 +112,7 @@ const TxsListItem = ({ tx, isLoading, showBlockInfo/*, currentAddress*/, enableT
         <Flex mt={ 2 } mb={ 3 } columnGap={ 2 }>
           { (tx.stability_fee !== undefined || tx.fee.value !== null) && (
             <>
-              <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Fee</Skeleton>
+              <Skeleton isLoaded={ !isLoading } display="inline-block" whiteSpace="pre">Naknada</Skeleton>
               { tx.stability_fee ? (
                 <TxFeeStability data={ tx.stability_fee } isLoading={ isLoading } hideUsd/>
               ) : (

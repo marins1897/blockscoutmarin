@@ -68,6 +68,7 @@ Please be aware that all environment variables prefixed with `NEXT_PUBLIC_` will
 | NEXT_PUBLIC_APP_HOST | `string` | App host | Required | - | `blockscout.com` |
 | NEXT_PUBLIC_APP_PORT | `number` | Port where app is running | - | `3000` | `3001` |
 | NEXT_PUBLIC_USE_NEXT_JS_PROXY | `boolean` | Tells the app to proxy all APIs request through the NextJS app. **We strongly advise not to use it in the production environment**, since it can lead to performance issues of the NodeJS server | - | `false` | `true` |
+| NEXT_PUBLIC_LOOKUP_HOST | `string` | Lookup host | Required | - | `blockscout.com` |
 
 &nbsp;
 

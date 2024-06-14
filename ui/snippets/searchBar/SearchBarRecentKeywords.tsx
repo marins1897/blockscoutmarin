@@ -49,8 +49,8 @@ const SearchBarSuggest = ({ onClick, onClear }: Props) => {
         </Box>
       ) }
       <Flex mb={ 3 } justifyContent="space-between" fontSize="sm">
-        <Text fontWeight={ 600 } variant="secondary">Recent</Text>
-        <Link onClick={ clearKeywords }>Clear all</Link>
+        <Text fontWeight={ 600 } variant="secondary">Nedavno</Text>
+        <Link onClick={ clearKeywords }>Očisti sve</Link>
       </Flex>
       { keywords.map(kw => (
         <Flex

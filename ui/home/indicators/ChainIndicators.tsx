@@ -53,7 +53,7 @@ const ChainIndicators = () => {
     }
 
     if (!statsQueryResult.data) {
-      return <Text mt={ 3 } mb={ 4 }>There is no data</Text>;
+      return <Text mt={ 3 } mb={ 4 }>Nema podataka</Text>;
     }
 
     return (

@@ -19,7 +19,7 @@ const ClearButton = ({ onClick, isDisabled, className }: Props) => {
       className={ className }
       colorScheme="none"
       aria-label="Clear input"
-      title="Clear input"
+      title="Obriši unos"
       boxSize={ 6 }
       icon={ <IconSvg name="status/error" boxSize={ 3 } color={ iconColor } _hover={{ color: iconColorHover }}/> }
       size="sm"

@@ -18,6 +18,16 @@ const StatsWidget = ({ label, value, isLoading, hint, diff, diffPeriod = '24h', 
   const skeletonBgColor = useColorModeValue('blackAlpha.50', 'whiteAlpha.50');
   const hintColor = useColorModeValue('gray.600', 'gray.400');
 
+  function switchTitle(baseTitle: string) {
+    let title = baseTitle; 
+    if (baseTitle === 'Average block time') title = 'Prosječno vrijeme bloka';
+    else if (baseTitle === 'Completed txns') title = 'Obrađene transakcije';
+    else if (baseTitle === 'Total blocks') title = 'Ukupan broj blokova';
+    else if (baseTitle === 'Total contracts') title = 'Ukupan broj ugovora';
+    else if (baseTitle === 'Total txns') title = 'Ukupan broj transakcija';
+    return title; 
+  }
+
   return (
     <Flex
       alignItems="flex-start"
@@ -35,7 +45,7 @@ const StatsWidget = ({ label, value, isLoading, hint, diff, diffPeriod = '24h', 
           fontSize="xs"
           w="fit-content"
         >
-          <span>{ label }</span>
+          <span>{ switchTitle(label) }</span>
         </Skeleton>
         <Skeleton
           isLoaded={ !isLoading }

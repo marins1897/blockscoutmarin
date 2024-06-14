@@ -1,7 +1,8 @@
 export interface DecodedInput {
-  method_call: string;
+  name: string;
   method_id: string;
-  parameters: Array<DecodedInputParams>;
+  parameters?: Array<DecodedInputParams>;
+  params: Array<DecodedInputParams>;
 }
 
 export interface DecodedInputParams {

@@ -5,11 +5,15 @@ import { getFeaturePayload } from 'configs/app/features/types';
 import config from 'configs/app';
 
 import { KEY_WORDS } from '../utils';
+import { getEnvValue } from 'configs/app/utils';
 
 const MAIN_DOMAINS = [
   `*.${ config.app.host }`,
   config.app.host,
 ].filter(Boolean);
+
+const lookupHost = getEnvValue('NEXT_PUBLIC_LOOKUP_HOST');
+console.log(lookupHost);
 
 const getCspReportUrl = () => {
   try {
@@ -44,6 +48,7 @@ export function app(): CspDev.DirectiveDescriptor {
     'connect-src': [
       KEY_WORDS.SELF,
       ...MAIN_DOMAINS,
+      lookupHost,
 
       // webpack hmr in safari doesn't recognize localhost as 'self' for some reason
       config.app.isDev ? 'ws://localhost:3000/_next/webpack-hmr' : '',

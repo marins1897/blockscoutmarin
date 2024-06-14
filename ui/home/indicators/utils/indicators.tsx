@@ -20,12 +20,12 @@ const mapNullToZero: (item: TimeChartItemRaw) => TimeChartItem = (item) => ({ ..
 
 const dailyTxsIndicator: TChainIndicator<'stats_charts_txs'> = {
   id: 'daily_txs',
-  title: 'Daily transactions',
+  title: 'Dnevne transakcije',
   value: (stats) => stats.transactions_today === null ?
     'N/A' :
     Number(stats.transactions_today).toLocaleString(undefined, { maximumFractionDigits: 2, notation: 'compact' }),
   icon: <IconSvg name="transactions" boxSize={ 6 } bgColor="#56ACD1" borderRadius="base" color="white"/>,
-  hint: `Number of transactions yesterday (0:00 - 23:59 UTC). The chart displays daily transactions for the past 30 days.`,
+  hint: `Broj transakcija jučer (0:00 - 23:59 UTC). Grafikon prikazuje dnevne transakcije u zadnjih 30 dana.`,
   api: {
     resourceName: 'stats_charts_txs',
     dataFn: (response) => ([ {
@@ -34,7 +34,7 @@ const dailyTxsIndicator: TChainIndicator<'stats_charts_txs'> = {
         .sort(sortByDateDesc)
         .reduceRight(nonNullTailReducer, [] as Array<TimeChartItemRaw>)
         .map(mapNullToZero),
-      name: 'Tx/day',
+      name: 'Tx/dan',
       valueFormatter: (x: number) => x.toLocaleString(undefined, { maximumFractionDigits: 2, notation: 'compact' }),
     } ]),
   },

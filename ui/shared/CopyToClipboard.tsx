@@ -29,7 +29,7 @@ const CopyToClipboard = ({ text, className, isLoading }: Props) => {
   }
 
   return (
-    <Tooltip label={ copied ? 'Copied' : 'Copy to clipboard' } isOpen={ isOpen || copied }>
+    <Tooltip label={ copied ? 'Kopirano' : 'Kopiraj u međuspremnik' } isOpen={ isOpen || copied }>
       <IconButton
         aria-label="copy"
         icon={ <IconSvg name="copy" boxSize={ 5 }/> }

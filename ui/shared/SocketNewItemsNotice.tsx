@@ -34,21 +34,21 @@ const SocketNewItemsNotice = chakra(({ children, className, url, num, alert, typ
         name = 'deposit';
         break;
       case 'block':
-        name = 'block';
+        name = 'blokov';
         break;
       default:
-        name = 'transaction';
+        name = 'transakcij';
         break;
     }
 
     if (!num) {
-      return `scanning new ${ name }s...`;
+      return `pretražujemo nove ${ name }e...`;
     }
 
     return (
       <>
-        <Link href={ url }>{ num.toLocaleString() } more { name }{ num > 1 ? 's' : '' }</Link>
-        <Text whiteSpace="pre"> ha{ num > 1 ? 've' : 's' } come in</Text>
+        <Link href={ url }>{ num.toLocaleString() } { num > 1 ? `novih ${name}a` : '+' }</Link>
+        { /*<Text whiteSpace="pre"> ha{ num > 1 ? 've' : 's' } come in</Text>*/ }
       </>
     );
   })();

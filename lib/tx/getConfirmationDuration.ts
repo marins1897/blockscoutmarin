@@ -6,12 +6,12 @@ export default function getConfirmationString(durations: Array<number>) {
   const [ lower, upper ] = durations.map((time) => time / 1_000);
 
   if (!upper) {
-    return `Confirmed within ${ lower.toLocaleString() } secs`;
+    return `Potvrđeno unutar ${ lower.toLocaleString() } secs`;
   }
 
   if (lower === 0) {
-    return `Confirmed within <= ${ upper.toLocaleString() } secs`;
+    return `Potvrđeno unutar <= ${ upper.toLocaleString() } secs`;
   }
 
-  return `Confirmed within ${ lower.toLocaleString() } - ${ upper.toLocaleString() } secs`;
+  return `Potvrđeno unutar ${ lower.toLocaleString() } - ${ upper.toLocaleString() } secs`;
 }

@@ -79,21 +79,21 @@ const AddressPageContent = () => {
     return [
       {
         id: 'txs',
-        title: 'Transactions',
+        title: 'Transakcije',
         count: addressTabsCountersQuery.data?.transactions_count,
         component: <AddressTxs scrollRef={ tabsScrollRef }/>,
       },
       txInterpretation.isEnabled && txInterpretation.provider === 'noves' ?
         {
           id: 'account_history',
-          title: 'Account history',
+          title: 'Povijest računa',
           component: <AddressAccountHistory scrollRef={ tabsScrollRef }/>,
         } :
         undefined,
       config.features.userOps.isEnabled && Boolean(userOpsAccountQuery.data?.total_ops) ?
         {
           id: 'user_ops',
-          title: 'User operations',
+          title: 'Korisničke operacije',
           count: userOpsAccountQuery.data?.total_ops,
           component: <AddressUserOps/>,
         } :
@@ -101,7 +101,7 @@ const AddressPageContent = () => {
       config.features.beaconChain.isEnabled && addressTabsCountersQuery.data?.withdrawals_count ?
         {
           id: 'withdrawals',
-          title: 'Withdrawals',
+          title: 'Povlačenja',
           count: addressTabsCountersQuery.data?.withdrawals_count,
           component: <AddressWithdrawals scrollRef={ tabsScrollRef }/>,
         } :
@@ -196,7 +196,7 @@ const AddressPageContent = () => {
     }
 
     return {
-      label: 'Back to top accounts list',
+      label: 'Natrag na listu top računa',
       url: appProps.referrer,
     };
   }, [ appProps.referrer ]);
@@ -243,7 +243,7 @@ const AddressPageContent = () => {
     <>
       <TextAd mb={ 6 }/>
       <PageTitle
-        title={ `${ addressQuery.data?.is_contract ? 'Contract' : 'Address' } details` }
+        title={ `Detalji ${ addressQuery.data?.is_contract ? 'ugovora' : 'transakcije' }` }
         backLink={ backLink }
         contentAfter={ tags }
         secondRow={ titleSecondRow }

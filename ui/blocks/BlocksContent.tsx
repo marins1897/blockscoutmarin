@@ -59,11 +59,11 @@ const BlocksContent = ({ type, query }: Props) => {
   }, [ queryClient, type ]);
 
   const handleSocketClose = React.useCallback(() => {
-    setSocketAlert('Connection is lost. Please refresh the page to load new blocks.');
+    setSocketAlert('Veza je izgubljena. Osvježite stranicu za učitavanje novih blokova.');
   }, []);
 
   const handleSocketError = React.useCallback(() => {
-    setSocketAlert('An error has occurred while fetching new blocks. Please refresh the page to load new blocks.');
+    setSocketAlert('Došlo je do pogreške prilikom dohvaćanja novih blokova. Osvježite stranicu za učitavanje novih blokova.');
   }, []);
 
   const channel = useSocketChannel({

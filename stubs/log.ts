@@ -7,9 +7,9 @@ export const LOG: Log = {
   address: ADDRESS_PARAMS,
   data: '0x000000000000000000000000000000000000000000000000000000d75e4be200',
   decoded: {
-    method_call: 'CreditSpended(uint256 indexed _type, uint256 _quantity)',
+    name: 'CreditSpended(uint256 indexed _type, uint256 _quantity)',
     method_id: '58cdf94a',
-    parameters: [
+    params: [
       {
         indexed: true,
         name: '_type',

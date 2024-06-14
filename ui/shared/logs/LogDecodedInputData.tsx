@@ -12,8 +12,8 @@ interface Props {
 const LogDecodedInputData = ({ data, isLoading }: Props) => {
   return (
     <>
-      <LogDecodedInputDataHeader methodId={ data.method_id } methodCall={ data.method_call } isLoading={ isLoading }/>
-      { data.parameters.length > 0 && <LogDecodedInputDataTable data={ data.parameters } isLoading={ isLoading }/> }
+      <LogDecodedInputDataHeader methodCall={ data.name } isLoading={ isLoading }/> 
+      { data.params.length > 0 && <LogDecodedInputDataTable data={ data.params } isLoading={ isLoading }/> }
     </>
   );
 };

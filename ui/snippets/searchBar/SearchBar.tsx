@@ -175,7 +175,7 @@ const SearchBar = ({ isHomepage }: Props) => {
                   href={ route({ pathname: '/search-results', query: { q: searchTerm } }) }
                   fontSize="sm"
                 >
-                View all results
+                Pogledaj sve rezultate
                 </LinkInternal>
               </PopoverFooter>
             ) }

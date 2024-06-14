@@ -15,8 +15,8 @@ const AddressNameInfo = ({ data, isLoading }: Props) => {
   if (data.token) {
     return (
       <DetailsInfoItem
-        title="Token name"
-        hint="Token name and symbol"
+        title="Ime tokena"
+        hint="Ime tokena i simbol"
         isLoading={ isLoading }
       >
         <TokenEntity
@@ -32,8 +32,8 @@ const AddressNameInfo = ({ data, isLoading }: Props) => {
   if (data.is_contract && data.name) {
     return (
       <DetailsInfoItem
-        title="Contract name"
-        hint="The name found in the source code of the Contract"
+        title="Ime ugovora"
+        hint="Ime ugovora pronađeno u izvornom kodu"
         isLoading={ isLoading }
       >
         <Skeleton isLoaded={ !isLoading }>
@@ -46,8 +46,8 @@ const AddressNameInfo = ({ data, isLoading }: Props) => {
   if (data.name) {
     return (
       <DetailsInfoItem
-        title="Validator name"
-        hint="The name of the validator"
+        title="Ime validatora"
+        hint="Ime validatora"
         isLoading={ isLoading }
       >
         <Skeleton isLoaded={ !isLoading }>

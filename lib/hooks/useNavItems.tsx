@@ -35,13 +35,13 @@ export default function useNavItems(): ReturnType {
       isActive: pathname === '/accounts',
     } : null;
     const blocks: NavItem | null = {
-      text: 'Blocks',
+      text: 'Blokovi',
       nextRoute: { pathname: '/blocks' as const },
       icon: 'block',
       isActive: pathname === '/blocks' || pathname === '/block/[height_or_hash]',
     };
     const txs: NavItem | null = {
-      text: 'Transactions',
+      text: 'Transakcije',
       nextRoute: { pathname: '/txs' as const },
       icon: 'transactions',
       isActive: pathname === '/txs' || pathname === '/tx/[hash]',
@@ -224,7 +224,7 @@ export default function useNavItems(): ReturnType {
         isActive: pathname.startsWith('/app'),
       } : null,
       config.features.stats.isEnabled ? {
-        text: 'Charts & stats',
+        text: 'Statistika',
         nextRoute: { pathname: '/stats' as const },
         icon: 'stats',
         isActive: pathname === '/stats',

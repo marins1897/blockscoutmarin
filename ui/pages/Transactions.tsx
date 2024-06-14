@@ -24,7 +24,7 @@ const TAB_LIST_PROPS = {
 };
 
 const Transactions = () => {
-  const verifiedTitle = config.chain.verificationType === 'validation' ? 'Validated' : 'Mined';
+  const verifiedTitle = config.chain.verificationType === 'validation' ? 'Validirane' : 'Mined';
   const router = useRouter();
   const isMobile = useIsMobile();
   const tab = getQueryParamString(router.query.tab);
@@ -104,7 +104,7 @@ const Transactions = () => {
         /> },
     {
       id: 'pending',
-      title: 'Pending',
+      title: 'U tijeku',
       component: (
         <TxsWithFrontendSorting
           query={ txsPendingQuery }
@@ -145,7 +145,7 @@ const Transactions = () => {
 
   return (
     <>
-      <PageTitle title="Transactions" withTextAd/>
+      <PageTitle title="Transakcije" withTextAd/>
       <RoutedTabs
         tabs={ tabs }
         tabListProps={ isMobile ? undefined : TAB_LIST_PROPS }

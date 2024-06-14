@@ -47,6 +47,30 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
   const pngBackgroundColor = useColorModeValue('white', 'black');
   const borderColor = useColorModeValue('gray.200', 'gray.600');
 
+  function switchTitle(baseTitle: string) {
+    let title = baseTitle; 
+    if (baseTitle === 'New transactions') title = 'Nove transakcije';
+    else if (baseTitle === 'Transactions growth') title = 'Porast broja transakcija';
+    else if (baseTitle === 'Transactions success rate') title = 'Stopa uspješnosti transakcija';
+    else if (baseTitle === 'Average block size') title = 'Prosječna veličina bloka';
+    else if (baseTitle === 'New blocks') title = 'Novi blokovi';
+    else if (baseTitle === 'Contracts growth') title = 'Porast broja ugovora';
+    else if (baseTitle === 'New contracts') title = 'Novi ugovori';
+    return title; 
+  }
+
+  function switchDescription(baseDescription: string | undefined) {
+    let descriptionHR = baseDescription; 
+    if (baseDescription === 'New transactions number') descriptionHR = 'Broj novih transakcija';
+    else if (baseDescription === 'Cumulative transactions number') descriptionHR = 'Kumulativni broj transakcija';
+    else if (baseDescription === 'Successful transactions rate per day') descriptionHR = 'Stopa uspješnosti transakcija po danu';
+    else if (baseDescription === 'Average size of blocks in bytes') descriptionHR = 'Prosječna veličina bloka u bajtovima';
+    else if (baseDescription === 'New blocks number') descriptionHR = 'Broj novih blokova';
+    else if (baseDescription === 'Cumulative number of contracts for the period') descriptionHR = 'Kumulativni broj ugovora za razdoblje';
+    else if (baseDescription === 'New contracts number for the period') descriptionHR = 'Broj novih ugovora za razdoblje';
+    return descriptionHR; 
+  }
+
   const handleZoom = useCallback(() => {
     setIsZoomResetInitial(false);
   }, []);
@@ -121,7 +145,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
             textAlign="center"
           >
             { `The data didn${ apos }t load. Please, ` }
-            <Link href={ window.document.location.href }>try to reload the page.</Link>
+            <Link href={ window.document.location.href }>Pokušajte osvježiti stranicu.</Link>
           </Text>
         </Flex>
       );
@@ -134,7 +158,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
     if (!hasItems) {
       return (
         <Center flexGrow={ 1 }>
-          <Text variant="secondary" fontSize="sm">No data</Text>
+          <Text variant="secondary" fontSize="sm">Nema podataka</Text>
         </Center>
       );
     }
@@ -145,7 +169,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
           items={ items }
           onZoom={ handleZoom }
           isZoomResetInitial={ isZoomResetInitial }
-          title={ title }
+          title={ switchTitle(title) }
           units={ units }
         />
       </Box>
@@ -171,7 +195,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
               fontWeight={ 600 }
               size={{ base: 'xs', lg: 'sm' }}
             >
-              { title }
+              { switchTitle(title) }
             </Skeleton>
 
             { description && (
@@ -181,7 +205,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
                 fontSize="xs"
                 mt={ 1 }
               >
-                <span>{ description }</span>
+                <span>{ switchDescription(description) }</span>
               </Skeleton>
             ) }
           </Flex>
@@ -213,7 +237,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
                     as={ IconButton }
                   >
                     <VisuallyHidden>
-                      Open chart options menu
+                      Otvori opcije karti
                     </VisuallyHidden>
                   </MenuButton>
                 </Skeleton>
@@ -224,7 +248,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
                     onClick={ showChartFullscreen }
                   >
                     <IconSvg name="scope" boxSize={ 5 } mr={ 3 }/>
-                  View fullscreen
+                  Puni zaslon
                   </MenuItem>
 
                   <MenuItem
@@ -233,7 +257,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
                     onClick={ handleFileSaveClick }
                   >
                     <IconSvg name="files/image" boxSize={ 5 } mr={ 3 }/>
-                  Save as PNG
+                  Spremi kao PNG
                   </MenuItem>
 
                   <MenuItem
@@ -242,7 +266,7 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
                     onClick={ handleSVGSavingClick }
                   >
                     <IconSvg name="files/csv" boxSize={ 5 } mr={ 3 }/>
-                  Save as CSV
+                  Spremi kao CSV
                   </MenuItem>
                 </MenuList>
               </Menu>
@@ -257,8 +281,8 @@ const ChartWidget = ({ items, title, description, isLoading, className, isError,
         <FullscreenChartModal
           isOpen={ isFullscreen }
           items={ items }
-          title={ title }
-          description={ description }
+          title={ switchTitle(title) }
+          description={ switchDescription(description) }
           onClose={ clearFullscreenChart }
           units={ units }
         />

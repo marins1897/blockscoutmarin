@@ -38,7 +38,7 @@ const TransactionPageContent = () => {
   const hash = getQueryParamString(router.query.hash);
   const txQuery = useTxQuery();
   const { data, isPlaceholderData, isError, error, errorUpdateCount } = txQuery;
-
+  
   const showDegradedView = publicClient && (isError || isPlaceholderData) && errorUpdateCount > 0;
 
   const tabs: Array<RoutedTab> = (() => {
@@ -49,7 +49,7 @@ const TransactionPageContent = () => {
     return [
       {
         id: 'index',
-        title: config.features.suave.isEnabled && data?.wrapped ? 'Confidential compute tx details' : 'Details',
+        title: config.features.suave.isEnabled && data?.wrapped ? 'Confidential compute tx details' : 'Detalji',
         component: detailsComponent,
       },
       txInterpretation.isEnabled && txInterpretation.provider === 'noves' ?
@@ -66,7 +66,7 @@ const TransactionPageContent = () => {
       txQuery.data?.blob_versioned_hashes?.length ?
         { id: 'blobs', title: 'Blobs', component: <TxBlobs txQuery={ txQuery }/> } :
         undefined,
-      { id: 'logs', title: 'Logs', component: <TxLogs txQuery={ txQuery }/> },
+      { id: 'logs', title: 'Logovi', component: <TxLogs txQuery={ txQuery }/> },
       //{ id: 'state', title: 'State', component: <TxState txQuery={ txQuery }/> },
       //{ id: 'raw_trace', title: 'Raw trace', component: <TxRawTrace txQuery={ txQuery }/> },
     ].filter(Boolean);
@@ -89,7 +89,7 @@ const TransactionPageContent = () => {
     }
 
     return {
-      label: 'Back to transactions list',
+      label: 'Natrag na listu transakcija',
       url: appProps.referrer,
     };
   }, [ appProps.referrer ]);
@@ -119,7 +119,7 @@ const TransactionPageContent = () => {
     <>
       <TextAd mb={ 6 }/>
       <PageTitle
-        title="Transaction details"
+        title="Detalji transakcije"
         backLink={ backLink }
         contentAfter={ tags }
         secondRow={ titleSecondRow }

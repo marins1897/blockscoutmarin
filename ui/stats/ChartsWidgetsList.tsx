@@ -36,6 +36,14 @@ const ChartsWidgetsList = ({ filterQuery, isError, isPlaceholderData, charts, in
     () => setIsSomeChartLoadingError(true),
     [ setIsSomeChartLoadingError ]);
 
+    function switchTitle(baseTitle: string) {
+      let title = baseTitle; 
+      if (baseTitle === 'Transactions') title = 'Transakcije';
+      else if (baseTitle === 'Blocks') title = 'Blokovi';
+      else if (baseTitle === 'Contracts') title = 'Ugovori';
+      return title; 
+    }
+
   if (isError) {
     return <ChartsLoadingErrorAlert/>;
   }
@@ -62,7 +70,7 @@ const ChartsWidgetsList = ({ filterQuery, isError, isPlaceholderData, charts, in
             >
               <Skeleton isLoaded={ !isPlaceholderData } mb={ 4 } display="inline-flex" alignItems="center" columnGap={ 2 } id={ section.id }>
                 <Heading size="md" >
-                  { section.title }
+                  { switchTitle(section.title) }
                 </Heading>
                 { section.id === 'gas' && homeStatsQuery.data && homeStatsQuery.data.gas_prices && (
                   <GasInfoTooltip data={ homeStatsQuery.data } dataUpdatedAt={ homeStatsQuery.dataUpdatedAt }>

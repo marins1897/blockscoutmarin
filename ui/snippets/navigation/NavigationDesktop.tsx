@@ -116,7 +116,7 @@ const NavigationDesktop = () => {
         left={{ lg: isExpanded ? '216px' : '80px', xl: isCollapsed ? '80px' : '216px' }}
         cursor="pointer"
         onClick={ handleTogglerClick }
-        aria-label="Expand/Collapse menu"
+        aria-label="Prikaži/sakri meni"
         id="expand-icon"
         display="none"
       />

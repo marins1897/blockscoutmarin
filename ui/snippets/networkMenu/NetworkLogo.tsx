@@ -46,8 +46,6 @@ const LogoFallback = ({ isCollapsed, isSmall, imageProps }: { isCollapsed?: bool
 const NetworkLogo = ({ isCollapsed, onClick, imageProps }: Props) => {
 
   const logoSrc = useColorModeValue(config.UI.sidebar.logo.default, config.UI.sidebar.logo.dark || config.UI.sidebar.logo.default);
-  // eslint-disable-next-line no-console
-  console.log(logoSrc);
   const iconSrc = useColorModeValue(config.UI.sidebar.icon.default, config.UI.sidebar.icon.dark || config.UI.sidebar.icon.default);
   const darkModeFilter = { filter: 'brightness(0) invert(1)' };
   const logoStyle = useColorModeValue({}, !config.UI.sidebar.logo.dark ? darkModeFilter : {});

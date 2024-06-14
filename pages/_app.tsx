@@ -1,10 +1,10 @@
-import type { ChakraProps } from '@chakra-ui/react';
+import { extendTheme, type ChakraProps } from '@chakra-ui/react';
 import { GrowthBookProvider } from '@growthbook/growthbook-react';
 import * as Sentry from '@sentry/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 //import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import type { NextPageWithLayout } from 'nextjs/types';
 
@@ -43,7 +43,6 @@ const ERROR_SCREEN_STYLES: ChakraProps = {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-
   useLoadFeatures();
   useNotifyOnNavigation();
 
@@ -56,7 +55,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{ page }</Layout>);
 
   return (
-    <ChakraProvider theme={ theme } cookies={ pageProps.cookies }>
+    <ChakraProvider theme={ theme } cookies={ pageProps.cookies } >
       <AppErrorBoundary
         { ...ERROR_SCREEN_STYLES }
         onError={ handleError }

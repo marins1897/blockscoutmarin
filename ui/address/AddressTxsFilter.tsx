@@ -37,9 +37,9 @@ const AddressTxsFilter = ({ onFilterChange, defaultFilter, isActive, isLoading }
       </MenuButton>
       <MenuList zIndex={ 2 }>
         <MenuOptionGroup defaultValue={ defaultFilter || 'all' } type="radio" onChange={ onFilterChange }>
-          <MenuItemOption value="all">All</MenuItemOption>
-          <MenuItemOption value="from">Outgoing transactions</MenuItemOption>
-          <MenuItemOption value="to">Incoming transactions</MenuItemOption>
+          <MenuItemOption value="all">Sve</MenuItemOption>
+          <MenuItemOption value="from">Izlazne transakcije</MenuItemOption>
+          <MenuItemOption value="to">Dolazne transakcije</MenuItemOption>
         </MenuOptionGroup>
       </MenuList>
     </Menu>

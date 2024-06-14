@@ -48,7 +48,7 @@ const BlockPageContent = () => {
   const tabs: Array<RoutedTab> = React.useMemo(() => ([
     {
       id: 'index',
-      title: 'Details',
+      title: 'Detalji',
       component: (
         <>
           { blockQuery.isDegradedData && <ServiceDegradationWarning isLoading={ blockQuery.isPlaceholderData } mb={ 6 }/> }
@@ -58,7 +58,7 @@ const BlockPageContent = () => {
     },
     {
       id: 'txs',
-      title: 'Transactions',
+      title: 'Transakcije',
       component: (
         <>
           { blockTxsQuery.isDegradedData && <ServiceDegradationWarning isLoading={ blockTxsQuery.isPlaceholderData } mb={ 6 }/> }
@@ -107,7 +107,7 @@ const BlockPageContent = () => {
     }
 
     return {
-      label: 'Back to blocks list',
+      label: 'Natrag na listu blokova',
       url: appProps.referrer,
     };
   }, [ appProps.referrer ]);
@@ -124,7 +124,7 @@ const BlockPageContent = () => {
         return `Uncle block #${ blockQuery.data?.height }`;
 
       default:
-        return `Block #${ blockQuery.data?.height }`;
+        return `Blok #${ blockQuery.data?.height }`;
     }
   })();
   const titleSecondRow = (

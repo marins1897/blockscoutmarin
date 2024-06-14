@@ -43,7 +43,7 @@ interface Props {
 const rollupFeature = config.features.rollup;
 
 const BlockDetails = ({ query }: Props) => {
-  const [ isExpanded, setIsExpanded ] = React.useState(false);
+  const [ isExpanded, setIsExpanded ] = React.useState(true);
   const router = useRouter();
   const heightOrHash = getQueryParamString(router.query.height_or_hash);
 
@@ -89,13 +89,13 @@ const BlockDetails = ({ query }: Props) => {
 
     return (
       <Text variant="secondary" whiteSpace="break-spaces">
-        <Tooltip label="Static block reward">
+        <Tooltip label="Nagrada za blok">
           <span>{ staticReward.dividedBy(WEI).toFixed() }</span>
         </Tooltip>
         { !txFees.isEqualTo(ZERO) && (
           <>
             { space }+{ space }
-            <Tooltip label="Txn fees">
+            <Tooltip label="Naknada za transakcije">
               <span>{ txFees.dividedBy(WEI).toFixed() }</span>
             </Tooltip>
           </>
@@ -103,7 +103,7 @@ const BlockDetails = ({ query }: Props) => {
         { !burntFees.isEqualTo(ZERO) && (
           <>
             { space }-{ space }
-            <Tooltip label="Burnt fees">
+            <Tooltip label="Naknada za odbačene jedinice">
               <span>{ burntFees.dividedBy(WEI).toFixed() }</span>
             </Tooltip>
           </>
@@ -117,13 +117,13 @@ const BlockDetails = ({ query }: Props) => {
       return 'Sequenced by';
     }
 
-    return config.chain.verificationType === 'validation' ? 'Validated by' : 'Mined by';
+    return config.chain.verificationType === 'validation' ? 'Potvrdio' : 'Stvorio';
   })();
 
   const txsNum = (() => {
     const blockTxsNum = (
       <LinkInternal href={ route({ pathname: '/block/[height_or_hash]', query: { height_or_hash: heightOrHash, tab: 'txs' } }) }>
-        { data.tx_count } txn{ data.tx_count === 1 ? '' : 's' }
+        { data.tx_count } txn{ data.tx_count === 1 ? '' : 'i' }
       </LinkInternal>
     );
 
@@ -131,7 +131,7 @@ const BlockDetails = ({ query }: Props) => {
       <>
         <span> and </span>
         <LinkInternal href={ route({ pathname: '/block/[height_or_hash]', query: { height_or_hash: heightOrHash, tab: 'blob_txs' } }) }>
-          { data.blob_tx_count } blob txn{ data.blob_tx_count === 1 ? '' : 's' }
+          { data.blob_tx_count } blob txn{ data.blob_tx_count === 1 ? '' : 'i' }
         </LinkInternal>
       </>
     ) : null;
@@ -140,7 +140,7 @@ const BlockDetails = ({ query }: Props) => {
       <>
         { blockTxsNum }
         { blockBlobTxsNum }
-        <span> in this block</span>
+        <span> u ovok bloku</span>
       </>
     );
   })();
@@ -150,9 +150,9 @@ const BlockDetails = ({ query }: Props) => {
       case 'reorg':
         return 'Reorg';
       case 'uncle':
-        return 'Uncle';
+        return 'Ujak';
       default:
-        return 'Block';
+        return 'Blok';
     }
   })();
 
@@ -164,26 +164,26 @@ const BlockDetails = ({ query }: Props) => {
       overflow="hidden"
     >
       <DetailsInfoItem
-        title={ `${ blockTypeLabel } height` }
-        hint="The block height of a particular block is defined as the number of blocks preceding it in the blockchain"
+        title={ `${ blockTypeLabel } broj` }
+        hint="Redni broj bloka"
         isLoading={ isPlaceholderData }
       >
         <Skeleton isLoaded={ !isPlaceholderData }>
           { data.height }
         </Skeleton>
-        { data.height === 0 && <Text whiteSpace="pre"> - Genesis Block</Text> }
+        { data.height === 0 && <Text whiteSpace="pre"> - Genesis Blok</Text> }
         <PrevNext
           ml={ 6 }
           onClick={ handlePrevNextClick }
-          prevLabel="View previous block"
-          nextLabel="View next block"
+          prevLabel="Prethodni blok"
+          nextLabel="Sljedeći blok"
           isPrevDisabled={ data.height === 0 }
           isLoading={ isPlaceholderData }
         />
       </DetailsInfoItem>
       <DetailsInfoItem
-        title="Size"
-        hint="Size of the block in bytes"
+        title="Veličina"
+        hint="Veličina blokova u bajtovima"
         isLoading={ isPlaceholderData }
       >
         <Skeleton isLoaded={ !isPlaceholderData }>
@@ -191,15 +191,15 @@ const BlockDetails = ({ query }: Props) => {
         </Skeleton>
       </DetailsInfoItem>
       <DetailsInfoItem
-        title="Timestamp"
-        hint="Date & time at which block was produced."
+        title="Datum"
+        hint="Datum kada je blok kreiran"
         isLoading={ isPlaceholderData }
       >
         <DetailsTimestamp timestamp={ data.timestamp } isLoading={ isPlaceholderData }/>
       </DetailsInfoItem>
       <DetailsInfoItem
-        title="Transactions"
-        hint="The number of transactions in the block"
+        title="Količina transakcija"
+        hint="Količina transakcija u bloku"
         isLoading={ isPlaceholderData }
       >
         <Skeleton isLoaded={ !isPlaceholderData }>
@@ -208,8 +208,8 @@ const BlockDetails = ({ query }: Props) => {
       </DetailsInfoItem>
       { config.features.beaconChain.isEnabled && Boolean(data.withdrawals_count) && (
         <DetailsInfoItem
-          title="Withdrawals"
-          hint="The number of beacon withdrawals in the block"
+          title="Isplate"
+          hint="Broj isplata u bloku"
           isLoading={ isPlaceholderData }
         >
           <Skeleton isLoaded={ !isPlaceholderData }>
@@ -223,8 +223,8 @@ const BlockDetails = ({ query }: Props) => {
       { rollupFeature.isEnabled && rollupFeature.type === 'zkSync' && data.zksync && (
         <>
           <DetailsInfoItem
-            title="Batch"
-            hint="Batch number"
+            title="Serija"
+            hint="Broj serije"
             isLoading={ isPlaceholderData }
           >
             { data.zksync.batch_number ? (
@@ -232,11 +232,11 @@ const BlockDetails = ({ query }: Props) => {
                 isLoading={ isPlaceholderData }
                 number={ data.zksync.batch_number }
               />
-            ) : <Skeleton isLoaded={ !isPlaceholderData }>Pending</Skeleton> }
+            ) : <Skeleton isLoaded={ !isPlaceholderData }>U tijeku</Skeleton> }
           </DetailsInfoItem>
           <DetailsInfoItem
             title="Status"
-            hint="Status is the short interpretation of the batch lifecycle"
+            hint="Status je kratka interpretacija životnog ciklusa serije"
             isLoading={ isPlaceholderData }
           >
             <VerificationSteps steps={ ZKSYNC_L2_TX_BATCH_STATUSES } currentStep={ data.zksync.status } isLoading={ isPlaceholderData }/>
@@ -247,7 +247,7 @@ const BlockDetails = ({ query }: Props) => {
       { !config.UI.views.block.hiddenFields?.miner && (
         <DetailsInfoItem
           title={ verificationTitle }
-          hint="A block producer who successfully included the block onto the blockchain"
+          hint="Validator koji je uspješno izgradio block na lancu blokova"
           columnGap={ 1 }
           isLoading={ isPlaceholderData }
         >
@@ -261,10 +261,9 @@ const BlockDetails = ({ query }: Props) => {
       ) }
       { !rollupFeature.isEnabled && !totalReward.isEqualTo(ZERO) && !config.UI.views.block.hiddenFields?.total_reward && (
         <DetailsInfoItem
-          title="Block reward"
+          title="Nagrada za blok"
           hint={
-            `For each block, the ${ validatorTitle } is rewarded with a finite amount of ${ config.chain.currency.symbol || 'native token' } 
-          on top of the fees paid for all transactions in the block`
+            `Za svaki blok, validator je nagrađen s određenom količinom ${ config.chain.currency.symbol || 'tokena' } `
           }
           columnGap={ 1 }
           isLoading={ isPlaceholderData }
@@ -282,7 +281,7 @@ const BlockDetails = ({ query }: Props) => {
             key={ type }
             title={ type }
             // is this text correct for validators?
-            hint={ `Amount of distributed reward. ${ capitalize(validatorTitle) }s receive a static block reward + Tx fees + uncle fees` }
+            hint={ `Količina zajedničke nagrade. Validator dobiva nagradu za blok + naknadu za transakciju + naknade od blokova ujaka` }
           >
             { BigNumber(reward).dividedBy(WEI).toFixed() } { currencyUnits.ether }
           </DetailsInfoItem>
@@ -291,8 +290,8 @@ const BlockDetails = ({ query }: Props) => {
 
       <DetailsInfoItemDivider/>
       <DetailsInfoItem
-        title="Gas used"
-        hint="The total gas amount used in the block and its percentage of gas filled in the block"
+        title="Korištene jedinice"
+        hint="Ukupna količina korištenih jedinica u bloku i postotak ispunjenosti bloka"
         isLoading={ isPlaceholderData }
       >
         <Skeleton isLoaded={ !isPlaceholderData }>
@@ -312,8 +311,8 @@ const BlockDetails = ({ query }: Props) => {
         ) }
       </DetailsInfoItem>
       <DetailsInfoItem
-        title="Gas limit"
-        hint="Total gas limit provided by all transactions in the block"
+        title="Limit jedinica"
+        hint="Ukupni zajednički limit jedinica svih transakcija u bloku"
         isLoading={ isPlaceholderData }
       >
         <Skeleton isLoaded={ !isPlaceholderData }>
@@ -353,11 +352,9 @@ const BlockDetails = ({ query }: Props) => {
       */ }
       { !config.UI.views.block.hiddenFields?.burnt_fees && !burntFees.isEqualTo(ZERO) && (
         <DetailsInfoItem
-          title="Burnt fees"
+          title="Naknada za odbačene jedinice"
           hint={
-            `Amount of ${ config.chain.currency.symbol || 'native token' } burned from transactions included in the block.
-
-          Equals Block Base Fee per Gas * Gas Used`
+            `Količina odbačenih ${ config.chain.currency.symbol || 'tokena' } iz transakcije u bloku`
           }
           isLoading={ isPlaceholderData }
         >
@@ -366,7 +363,7 @@ const BlockDetails = ({ query }: Props) => {
             { burntFees.dividedBy(WEI).toFixed() } { currencyUnits.ether }
           </Skeleton>
           { !txFees.isEqualTo(ZERO) && (
-            <Tooltip label="Burnt fees / Txn fees * 100%">
+            <Tooltip label="Nakanada za odbačene jedinice / Naknada za transakcije * 100%">
               <Box>
                 <Utilization
                   ml={ 4 }
@@ -380,8 +377,8 @@ const BlockDetails = ({ query }: Props) => {
       ) }
       { data.priority_fee !== null && BigNumber(data.priority_fee).gt(ZERO) && (
         <DetailsInfoItem
-          title="Priority fee / Tip"
-          hint="User-defined tips sent to validator for transaction priority/inclusion"
+          title="Napojnica za prioritet"
+          hint="Napojnica koju korisnik daje za prioritet transakcije"
           isLoading={ isPlaceholderData }
         >
           <Skeleton isLoaded={ !isPlaceholderData }>
@@ -399,6 +396,7 @@ const BlockDetails = ({ query }: Props) => {
       </DetailsInfoItem> */ }
 
       { /* CUT */ }
+      { /*
       <GridItem colSpan={{ base: undefined, lg: 2 }}>
         <Element name="BlockDetails__cutLink">
           <Skeleton isLoaded={ !isPlaceholderData } mt={ 6 } display="inline-block">
@@ -408,14 +406,15 @@ const BlockDetails = ({ query }: Props) => {
               textDecorationStyle="dashed"
               onClick={ handleCutClick }
             >
-              { isExpanded ? 'Hide details' : 'View details' }
+              { isExpanded ? 'Sakrij detalje' : 'Prikaži detalje' }
             </Link>
           </Skeleton>
         </Element>
       </GridItem>
+    */ }
 
       { /* ADDITIONAL INFO */ }
-      { isExpanded && !isPlaceholderData && (
+      { !isPlaceholderData && (
         <>
           <GridItem colSpan={{ base: undefined, lg: 2 }} mt={{ base: 1, lg: 4 }}/>
 
@@ -476,10 +475,10 @@ const BlockDetails = ({ query }: Props) => {
               <CopyToClipboard text={ data.hash_for_merged_mining }/>
             </DetailsInfoItem>
           ) }
-
+          { /*
           <DetailsInfoItem
-            title="Difficulty"
-            hint={ `Block difficulty for ${ validatorTitle }, used to calibrate block generation time` }
+            title="Težina"
+            hint={ `Težina bloka za validatore koja se koristi za podešavanje vremena izgradnje bloka` }
           >
             <Box whiteSpace="nowrap" overflow="hidden">
               <HashStringShortenDynamic hash={ BigNumber(data.difficulty).toFormat() }/>
@@ -487,8 +486,8 @@ const BlockDetails = ({ query }: Props) => {
           </DetailsInfoItem>
           { data.total_difficulty && (
             <DetailsInfoItem
-              title="Total difficulty"
-              hint="Total difficulty of the chain until this block"
+              title="Ukupna težina"
+              hint="Ukupna težina lanca do trenutnog bloka"
             >
               <Box whiteSpace="nowrap" overflow="hidden">
                 <HashStringShortenDynamic hash={ BigNumber(data.total_difficulty).toFormat() }/>
@@ -497,10 +496,10 @@ const BlockDetails = ({ query }: Props) => {
           ) }
 
           <DetailsInfoItemDivider/>
-
+          */ }
           <DetailsInfoItem
-            title="Hash"
-            hint="The SHA256 hash of the block"
+            title="Sažetak"
+            hint="SHA256 sažetak bloka"
             flexWrap="nowrap"
           >
             <Box overflow="hidden">
@@ -510,8 +509,8 @@ const BlockDetails = ({ query }: Props) => {
           </DetailsInfoItem>
           { data.height > 0 && (
             <DetailsInfoItem
-              title="Parent hash"
-              hint="The hash of the block from which this block was generated"
+              title="Sažetak roditeljskog bloka"
+              hint="Sažetak bloka iz kojeg je ovaj blok izgrađen"
               flexWrap="nowrap"
             >
               <LinkInternal
@@ -533,14 +532,16 @@ const BlockDetails = ({ query }: Props) => {
           >
             <Text wordBreak="break-all" whiteSpace="break-spaces">{ data.state_root }</Text>
           </DetailsInfoItem> */ }
+          { /*
           { !config.UI.views.block.hiddenFields?.nonce && (
             <DetailsInfoItem
               title="Nonce"
-              hint="Block nonce is a value used during mining to demonstrate proof of work for a block"
+              hint="Kriptografski broj korišten pri izgradnji bloka"
             >
               { data.nonce }
             </DetailsInfoItem>
           ) }
+        */ }
         </>
       ) }
     </Grid>

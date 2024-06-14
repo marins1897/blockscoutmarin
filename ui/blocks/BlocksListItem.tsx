@@ -52,9 +52,9 @@ const BlocksListItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
         <BlockTimestamp ts={ data.timestamp } isEnabled={ enableTimeIncrement } isLoading={ isLoading }/>
       </Flex>
       <Flex columnGap={ 2 }>
-        <Text fontWeight={ 500 }>Size</Text>
+        <Text fontWeight={ 500 }>Veličina</Text>
         <Skeleton isLoaded={ !isLoading } display="inline-block" color="text_secondary">
-          <span>{ data.size.toLocaleString() } bytes</span>
+          <span>{ data.size.toLocaleString() } bajtova</span>
         </Skeleton>
       </Flex>
       { !config.UI.views.block.hiddenFields?.miner && (
@@ -68,7 +68,7 @@ const BlocksListItem = ({ data, isLoading, enableTimeIncrement }: Props) => {
         </Flex>
       ) }
       <Flex columnGap={ 2 }>
-        <Text fontWeight={ 500 }>Txn</Text>
+        <Text fontWeight={ 500 }>Transakcija</Text>
         { data.tx_count > 0 ? (
           <Skeleton isLoaded={ !isLoading } display="inline-block">
             <LinkInternal href={ route({ pathname: '/block/[height_or_hash]', query: { height_or_hash: String(data.height), tab: 'txs' } }) }>

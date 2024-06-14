@@ -68,10 +68,10 @@ const AddressQrCode = ({ address, className, isLoading }: Props) => {
 
   return (
     <>
-      <Tooltip label="Click to view QR code">
+      <Tooltip label="Klikni da pogledaš QR kod">
         <IconButton
           className={ className }
-          aria-label="Show QR code"
+          aria-label="Pogledaj QR kod"
           variant="outline"
           size="sm"
           pl="6px"
@@ -97,7 +97,7 @@ const AddressQrCode = ({ address, className, isLoading }: Props) => {
           <Modal isOpen={ isOpen } onClose={ onClose } size={{ base: 'full', lg: 'sm' }}>
             <ModalOverlay/>
             <ModalContent>
-              <ModalHeader fontWeight="500" textStyle="h3" mb={ 4 }>Address QR code</ModalHeader>
+              <ModalHeader fontWeight="500" textStyle="h3" mb={ 4 }>QR kod adrese</ModalHeader>
               <ModalCloseButton/>
               <ModalBody mb={ 0 }>
                 <AddressEntity

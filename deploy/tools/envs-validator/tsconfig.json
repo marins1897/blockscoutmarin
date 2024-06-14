@@ -12,6 +12,7 @@
 		"../../../types/**/*.ts", 
 		"../../../configs/app/**/*.ts", 
 		"../../../global.d.ts", 
+		"../../../abi-decoder.d.ts", 
 		"./index.ts", 
 		"./schema.ts" 
 	],

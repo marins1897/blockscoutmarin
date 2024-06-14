@@ -81,7 +81,7 @@ const Stats = () => {
         { rollupFeature.isEnabled && rollupFeature.type === 'zkEvm' && (
           <StatsItem
             icon="txn_batches"
-            title="Latest batch"
+            title="Posljednja serija"
             value={ (zkEvmLatestBatchQuery.data || 0).toLocaleString() }
             url={ route({ pathname: '/batches' }) }
             isLoading={ isLoading }
@@ -90,7 +90,7 @@ const Stats = () => {
         { rollupFeature.isEnabled && rollupFeature.type === 'zkSync' && (
           <StatsItem
             icon="txn_batches"
-            title="Latest batch"
+            title="Posljednja serija"
             value={ (zkSyncLatestBatchQuery.data || 0).toLocaleString() }
             url={ route({ pathname: '/batches' }) }
             isLoading={ isLoading }
@@ -99,7 +99,7 @@ const Stats = () => {
         { !(rollupFeature.isEnabled && (rollupFeature.type === 'zkEvm' || rollupFeature.type === 'zkSync')) && (
           <StatsItem
             icon="block"
-            title="Total blocks"
+            title="Ukupno blokova"
             value={ Number(data.total_blocks).toLocaleString() }
             url={ route({ pathname: '/blocks' }) }
             isLoading={ isLoading }
@@ -108,14 +108,14 @@ const Stats = () => {
         { hasAvgBlockTime && (
           <StatsItem
             icon="clock-light"
-            title="Average block time"
+            title="Prosječno vrijeme bloka"
             value={ `${ (data.average_block_time / 1000).toFixed(1) }s` }
             isLoading={ isLoading }
           />
         ) }
         <StatsItem
           icon="transactions"
-          title="Total transactions"
+          title="Ukupno transakcija"
           value={ Number(data.total_transactions).toLocaleString() }
           url={ route({ pathname: '/txs' }) }
           isLoading={ isLoading }
@@ -132,7 +132,7 @@ const Stats = () => {
         { hasGasTracker && data.gas_prices && (
           <StatsItem
             icon="gas"
-            title="Gas tracker"
+            title="Pratitelj jedinica"
             value={ <GasPrice data={ data.gas_prices.average }/> }
             _last={ isOdd ? lastItemTouchStyle : undefined }
             tooltip={ gasInfoTooltip }

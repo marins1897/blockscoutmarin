@@ -59,7 +59,7 @@ const Icon = (props: IconProps) => {
 
     if (props.address.is_verified) {
       return (
-        <Tooltip label="Verified contract">
+        <Tooltip label="Verificirani ugovor">
           <span>
             <EntityBase.Icon
               { ...props }
@@ -73,7 +73,7 @@ const Icon = (props: IconProps) => {
     }
 
     return (
-      <Tooltip label="Contract">
+      <Tooltip label="Ugovor">
         <span>
           <EntityBase.Icon
             { ...props }

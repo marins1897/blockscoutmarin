@@ -25,7 +25,7 @@ const Stats = () => {
 
   return (
     <>
-      <PageTitle title={ `${ config.chain.name } stats` }/>
+      <PageTitle title={ `${ config.chain.name } statistika` }/>
 
       <Box mb={{ base: 6, sm: 8 }}>
         <NumberWidgetsList/>

@@ -2,7 +2,6 @@ import { Divider, Flex, Skeleton, VStack } from '@chakra-ui/react';
 import React from 'react';
 
 interface Props {
-  methodId: string;
   methodCall: string;
   isLoading?: boolean;
 }
@@ -29,7 +28,7 @@ const removeAddressArg = (methodCall: string) => {
   return methodCall.replace(/address arg\d+,\s*/, '');
 };
 
-const LogDecodedInputDataHeader = ({ methodId, methodCall, isLoading }: Props) => {
+const LogDecodedInputDataHeader = ({ methodCall, isLoading }: Props) => {
   const cleanedMethodCall = removeAddressArg(methodCall);
 
   return (
@@ -39,8 +38,8 @@ const LogDecodedInputDataHeader = ({ methodId, methodCall, isLoading }: Props) =
       fontSize="sm"
       lineHeight={ 5 }
     >
-      <Item label="Method id" text={ methodId } isLoading={ isLoading }/>
-      <Item label="Call" text={ cleanedMethodCall } isLoading={ isLoading }/>
+      { /*<Item label="Id metode" text={ methodId } isLoading={ isLoading }/>*/ }
+      <Item label="Metoda" text={ cleanedMethodCall } isLoading={ isLoading }/>
     </VStack>
   );
 };

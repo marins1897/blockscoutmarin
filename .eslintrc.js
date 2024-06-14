@@ -59,9 +59,9 @@ module.exports = {
       readonly: 'generic',
     } ],
     '@typescript-eslint/brace-style': [ 'error', '1tbs' ],
-    '@typescript-eslint/consistent-type-imports': [ 'error' ],
-    '@typescript-eslint/indent': [ 'error', 2 ],
-    '@typescript-eslint/member-delimiter-style': [ 'error' ],
+    //'@typescript-eslint/consistent-type-imports': [ 'error' ],
+    //'@typescript-eslint/indent': [ 'error', 2 ],
+    //'@typescript-eslint/member-delimiter-style': [ 'error' ],
     '@typescript-eslint/naming-convention': [ 'error',
       {
         selector: 'default',
@@ -119,11 +119,11 @@ module.exports = {
     ],
     '@typescript-eslint/no-duplicate-imports': [ 'error' ],
     '@typescript-eslint/no-empty-function': [ 'off' ],
-    '@typescript-eslint/no-unused-vars': [ 'error', { ignoreRestSiblings: true } ],
+    '@typescript-eslint/no-unused-vars': [ 'off' ],
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-useless-constructor': [ 'error' ],
     '@typescript-eslint/type-annotation-spacing': 'error',
-    '@typescript-eslint/no-explicit-any': [ 'error', { ignoreRestArgs: true } ],
+    '@typescript-eslint/no-explicit-any': [ 'off' ],
 
     // disabled in favor of @typescript-eslint
     'brace-style': 'off',
@@ -135,7 +135,7 @@ module.exports = {
 
     'array-bracket-spacing': [ 'error', 'always' ],
     'arrow-spacing': [ 'error', { before: true, after: true } ],
-    'comma-dangle': [ 'error', 'always-multiline' ],
+    //'comma-dangle': [ 'error', 'always-multiline' ],
     'comma-spacing': [ 'error' ],
     'comma-style': [ 'error', 'last' ],
     curly: [ 'error', 'all' ],
@@ -148,19 +148,21 @@ module.exports = {
       afterColon: true,
     } ],
     'keyword-spacing': 'error',
-    'linebreak-style': [ 'error', 'unix' ],
+    //'linebreak-style': [ 'error', 'unix' ],
     'lines-around-comment': [ 'error', {
       beforeBlockComment: true,
       allowBlockStart: true,
     } ],
-    'max-len': [ 'error', 160, 4 ],
-    'no-console': 'error',
+    'max-len': [ 'error', 360, 4 ],
+    //'no-console': 'error',
     'no-empty': [ 'error', { allowEmptyCatch: true } ],
+    /*
     'no-implicit-coercion': [ 'error', {
       number: true,
       'boolean': true,
       string: true,
     } ],
+    */
     'no-mixed-operators': [ 'error', {
       groups: [
         [ '&&', '||' ],
@@ -168,14 +170,14 @@ module.exports = {
     } ],
     'no-mixed-spaces-and-tabs': 'error',
     'no-multiple-empty-lines': [ 'error', {
-      max: 1,
+      max: 4,
       maxEOF: 0,
       maxBOF: 0,
     } ],
-    'no-multi-spaces': 'error',
+    //'no-multi-spaces': 'error',
     'no-multi-str': 'error',
     'no-nested-ternary': 'error',
-    'no-trailing-spaces': 'error',
+    //'no-trailing-spaces': 'error',
     'no-spaced-func': 'error',
     'no-with': 'error',
     'object-curly-spacing': [ 'error', 'always' ],
@@ -183,10 +185,12 @@ module.exports = {
     'one-var': [ 'error', 'never' ],
     'operator-linebreak': [ 'error', 'after' ],
     'prefer-const': 'error',
+    /*
     'quote-props': [ 'error', 'as-needed', {
       keywords: true,
       numbers: true,
     } ],
+    */
     quotes: [ 'error', 'single', {
       allowTemplateLiterals: true,
     } ],
@@ -197,8 +201,8 @@ module.exports = {
     'space-unary-ops': 'off',
     'template-curly-spacing': [ 'error', 'always' ],
     'wrap-iife': [ 'error', 'inside' ],
-    semi: [ 'error', 'always' ],
-
+    //semi: [ 'error', 'always' ],
+    /*
     'import-helpers/order-imports': [
       'error',
       {
@@ -228,7 +232,7 @@ module.exports = {
         alphabetize: { order: 'asc', ignoreCase: true },
       },
     ],
-
+    */
     'no-restricted-imports': [ 'error', RESTRICTED_MODULES ],
     'no-restricted-properties': [ 2, {
       object: 'process',
@@ -279,7 +283,7 @@ module.exports = {
     'react/no-render-return-value': 'error',
     'react/no-string-refs': 'off',
     'react/no-unknown-property': 'error',
-    'react/no-unused-state': 'error',
+    //'react/no-unused-state': 'error',
     'react/require-optimization': [ 'error' ],
     'react/void-dom-elements-no-children': 'error',
     'react-hooks/rules-of-hooks': 'error',

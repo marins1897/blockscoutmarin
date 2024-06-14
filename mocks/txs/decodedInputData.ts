@@ -1,9 +1,9 @@
 import type { DecodedInput } from 'types/api/decodedInput';
 
 export const withoutIndexedFields: DecodedInput = {
-  method_call: 'CreditSpended(uint256 _type, uint256 _quantity)',
+  name: 'CreditSpended(uint256 _type, uint256 _quantity)',
   method_id: '58cdf94a',
-  parameters: [
+  params: [
     {
       name: '_type',
       type: 'uint256',
@@ -18,9 +18,9 @@ export const withoutIndexedFields: DecodedInput = {
 };
 
 export const withIndexedFields: DecodedInput = {
-  method_call: 'Transfer(address indexed from, address indexed to, uint256 value)',
+  name: 'Transfer(address indexed from, address indexed to, uint256 value)',
   method_id: 'ddf252ad',
-  parameters: [
+  params: [
     {
       indexed: true,
       name: 'from',

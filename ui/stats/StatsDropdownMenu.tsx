@@ -17,6 +17,15 @@ export function StatsDropdownMenu<T extends string>({ items, selectedId, onSelec
     onSelect(selectedId as T);
   }, [ onSelect ]);
 
+  function switchTitle(baseTitle: string | undefined) {
+    let title = baseTitle; 
+    if (baseTitle === 'All') title = 'Sve';
+    else if (baseTitle === 'Transactions') title = 'Transakcije';
+    else if (baseTitle === 'Blocks') title = 'Blokovi';
+    else if (baseTitle === 'Contracts') title = 'Ugovori';
+    return title; 
+  }
+
   return (
     <Menu
     >
@@ -37,7 +46,7 @@ export function StatsDropdownMenu<T extends string>({ items, selectedId, onSelec
             overflow="hidden"
             textOverflow="ellipsis"
           >
-            { selectedCategory?.title }
+            { switchTitle(selectedCategory?.title) }
           </Text>
           <IconSvg transform="rotate(-90deg)" ml="auto" name="arrows/east-mini" w={ 5 } h={ 5 }/>
         </Box>
@@ -54,7 +63,7 @@ export function StatsDropdownMenu<T extends string>({ items, selectedId, onSelec
               key={ item.id }
               value={ item.id }
             >
-              { item.title }
+              { switchTitle(item.title) }
             </MenuItemOption>
           )) }
         </MenuOptionGroup>

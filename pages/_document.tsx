@@ -31,7 +31,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="hr">
         <Head>
           { /* FONTS */ }
           <link

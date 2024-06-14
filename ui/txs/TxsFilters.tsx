@@ -18,8 +18,8 @@ interface Props {
 
 const TYPE_OPTIONS = [
   { title: 'Token transfer', id: 'token_transfer' },
-  { title: 'Contract Creation', id: 'contract_creation' },
-  { title: 'Contract Call', id: 'contract_call' },
+  { title: 'Contract creation', id: 'contract_creation' },
+  { title: 'Contract call', id: 'contract_call' },
   { title: 'Coin Transfer', id: 'coin_transfer' },
   { title: 'Token Creation', id: 'token_creation' },
 ];
@@ -47,13 +47,13 @@ const TxsFilters = ({ filters, appliedFiltersNum }: Props) => {
 
   return (
     <PopoverFilter contentProps={{ w: { md: '100%', lg: '438px' } }} appliedFiltersNum={ appliedFiltersNum }>
-      <Text variant="secondary" fontWeight="600" fontSize="sm">Type</Text>
+      <Text variant="secondary" fontWeight="600" fontSize="sm">Tip</Text>
       <Grid gridTemplateColumns="1fr 1fr" rowGap={ 5 } mt={ 4 } mb={ 4 } pb={ 6 } borderBottom="1px solid" borderColor="divider">
         <CheckboxGroup size="lg" onChange={ onTypeFilterChange } defaultValue={ typeFilter }>
           { TYPE_OPTIONS.map(({ title, id }) => <Checkbox key={ id } value={ id }><Text fontSize="md">{ title }</Text></Checkbox>) }
         </CheckboxGroup>
       </Grid>
-      <Text variant="secondary" fontWeight="600" fontSize="sm">Method</Text>
+      <Text variant="secondary" fontWeight="600" fontSize="sm">Metoda</Text>
       <Grid gridTemplateColumns="1fr 1fr" rowGap={ 5 } mt={ 4 } mb={ 4 } pb={ 6 } borderBottom="1px solid" borderColor="divider">
         <CheckboxGroup size="lg" onChange={ onMethodFilterChange } defaultValue={ methodFilter }>
           { METHOD_OPTIONS.map(({ title, id }) => <Checkbox key={ id } value={ id }><Text fontSize="md">{ title }</Text></Checkbox>) }

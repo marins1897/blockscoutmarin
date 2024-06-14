@@ -40,7 +40,7 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           variant="outline"
           onClick={ onPrevPageClick }
           size="sm"
-          aria-label="Prev page"
+          aria-label="Prethodna stranica"
           w="36px"
           icon={ <IconSvg name="arrows/east-mini" w={ 5 } h={ 5 }/> }
           isDisabled={ !canGoBackwards || isLoading }
@@ -67,7 +67,7 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           variant="outline"
           onClick={ onNextPageClick }
           size="sm"
-          aria-label="Next page"
+          aria-label="Sljedeća stranica"
           w="36px"
           icon={ <IconSvg name="arrows/east-mini" w={ 5 } h={ 5 } transform="rotate(180deg)"/> }
           isDisabled={ !hasNextPage || isLoading }
